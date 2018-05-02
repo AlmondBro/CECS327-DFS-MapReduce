@@ -345,4 +345,10 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         ChordMessageInterface context) throws IOException
     };
     */
+
+	@Override
+	public void setWorkingPeer() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }

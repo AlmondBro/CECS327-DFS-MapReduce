@@ -86,7 +86,7 @@ public class UserInterface {
         System.out.println("To append enter 6:\t");
         System.out.println("To move enter 7:\t");
         System.out.println("To head, enter 8:\t");
-        System.out.println("Run mapReduce 9:")
+        System.out.println("Run mapReduce 9:");
         System.out.println("To quit, enter 10:\t");
     } //end getCommandLineInterface()
 
