@@ -61,4 +61,9 @@ public class MetaFile {
 	{
 		return page.get(0);
 	}
+	public int getNumOfPage()
+	{
+		int numOfPage = page.size();
+		return numOfPage;
+	}
 }

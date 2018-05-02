@@ -210,7 +210,10 @@ public class UserInterface {
                     in3.close();
                 break;
                 case 9:
-                    //runMapReduce
+                    System.out.println("Enter file name");
+                    fileName = user_input.nextLine();
+                    System.out.println("You enter the file name:" + fileName);
+                    this.getDFS().runMapReduce(fileName);
                     break;
                 case 10:
                     System.out.println("\nExiting...see you later alligator!");
