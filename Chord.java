@@ -20,7 +20,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     private Long numberOfRecords;
     private Set<Long> set;
     private Map <Long,List<String>> BMap;
-    private Map <Long,ListString> BReduce;
+    private Map <Long,String> BReduce;
     
     //DFS
     public Boolean isKeyInSemiCloseInterval(long key, long key1, long key2)
