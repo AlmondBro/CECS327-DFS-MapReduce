@@ -305,7 +305,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //TOD
         //creates and stores local  page
         //add page, make a refereence file distributed sytem
-    */  }
+     }*/
     public void mapContext(Long page, MapReduceInterface mapper,
     ChordMessageInterface context) throws RemoteException
     {
@@ -313,13 +313,14 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //read the file, line by line. Parse pass to the mapper.map
         // 
          FileStream in = context.get(page);
-         File file = in.getFile();
+         File File = in.getFile();
          File.getAbsolutePath(); 
          System.out.println("Files path: " + File.getAbsolutePath());
          String text = "" +      File.getAbsolutePath(); 
          Path path = Paths.get(text);       
          byte[] bytes = Files.readAllBytes(path);
          String  text2 = new String(bytes, StandardCharsets.UTF_8);
+         //was test if I can do what I within the userinterface with the chord.java
          System.out.println("Files contents: " + text2);
         //give to emitMap
     }
@@ -361,8 +362,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         ChordMessageInterface context) throws IOException;
         public void reduce(Long key, List< String > value,
         ChordMessageInterface context) throws IOException
-    */ };
-    
+    };*/
 
 	@Override
 	public void setWorkingPeer() throws IOException {
