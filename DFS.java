@@ -359,21 +359,23 @@ public class DFS implements Serializable {
     {
         System.out.println("Starting Map Reduce");
         String name = filename;
-       // mapreduce = new Mapper();
+        MapReduceInterface mapreduce = new Mapper();
         Metadata metadata = readMetaData();
         int size = metadata.getFile(filename).getNumOfPage();
         System.out.println("Number of pages in file:" + size);
         for(int i = 0; i < size; i++)
         {
             Page page = metadata.getFile(filename).getPage(i);
+            ChordMessageInterface peer = chord.locateSuccessor(page.getGUID());
        //     for each page in metafile.file
-      //let peer be the process responsible for storing page
-      //ChordMessageInterface peer = chord.locateSuccessor(guid);
-      //peer.mapContext(page, mapreduce, chord)
-     //wait until context.hasCompleted() = true
+  
+           peer.mapContext(page.getGUID(), mapreduce, chord);
+
+        }
+
+          //wait until context.hasCompleted() = true
 // reduce phase
    //reduceContext(guid, mapreduce, chord);
-        }
         System.out.println("Within bounds");
     }
 

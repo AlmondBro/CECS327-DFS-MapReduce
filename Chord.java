@@ -4,6 +4,10 @@ import java.rmi.server.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordMessageInterface {
     public static final int M = 2;
@@ -287,7 +291,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
             set.add(page);
 
     }
-  /*  public void completePeer(Long page, Long n) throws RemoteException{
+  public void completePeer(Long page, Long n) throws RemoteException{
             this.numberOfRecords += n;
             set.remove(page);
     }
@@ -295,18 +299,32 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     
             return set.isEmpty();
     }
-    public void reduceContext(Long source, MapReduceInterface reducer,
+ /*public void reduceContext(Long source, MapReduceInterface reducer,
     ChordMessageInterface context) throws RemoteException
     {
         //TOD
-   }
+        //creates and stores local  page
+        //add page, make a refereence file distributed sytem
+    */  }
     public void mapContext(Long page, MapReduceInterface mapper,
     ChordMessageInterface context) throws RemoteException
     {
         //TODO
+        //read the file, line by line. Parse pass to the mapper.map
+        // 
+         FileStream in = context.get(page);
+         File file = in.getFile();
+         File.getAbsolutePath(); 
+         System.out.println("Files path: " + File.getAbsolutePath());
+         String text = "" +      File.getAbsolutePath(); 
+         Path path = Paths.get(text);       
+         byte[] bytes = Files.readAllBytes(path);
+         String  text2 = new String(bytes, StandardCharsets.UTF_8);
+         System.out.println("Files contents: " + text2);
+        //give to emitMap
     }
 
-    public void emitMap(Long key, String value) throws RemoteException
+ /*   public void emitMap(Long key, String value) throws RemoteException
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
         {
@@ -336,15 +354,15 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
              peer.emitReduce(key, value);
          }
      }
-
-     public interface ChordMessageInterface
+*/
+   /*  public interface ChordMessageInterface
     {
         public void map(Long key, String value,
         ChordMessageInterface context) throws IOException;
         public void reduce(Long key, List< String > value,
         ChordMessageInterface context) throws IOException
-    };
-    */
+    */ };
+    
 
 	@Override
 	public void setWorkingPeer() throws IOException {
