@@ -26,6 +26,6 @@ public interface ChordMessageInterface extends Remote
     ChordMessageInterface context) throws RemoteException;
     public void mapContext(Long page, MapReduceInterface mapper,ChordMessageInterface context) throws RemoteException;
     public void emitMap(Long key, String value) throws RemoteException;
-    public void emitReduce(Long page, List<String> value) throws RemoteException;
+    public void emitReduce(Long page, String string) throws RemoteException;
 
 }

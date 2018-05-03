@@ -351,4 +351,43 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void completePeer(Long page, Long n) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Boolean isPhaseCompleted() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void reduceContext(Long source, MapReduceInterface reducer,
+			ChordMessageInterface context) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mapContext(Long page, MapReduceInterface mapper,
+			ChordMessageInterface context) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void emitMap(Long key, String value) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void emitReduce(Long page, String value)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }
