@@ -287,7 +287,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
             set.add(page);
 
     }
-  /*  public void completePeer(Long page, Long n) throws RemoteException{
+    public void completePeer(Long page, Long n) throws RemoteException{
             this.numberOfRecords += n;
             set.remove(page);
     }
@@ -298,12 +298,32 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     public void reduceContext(Long source, MapReduceInterface reducer,
     ChordMessageInterface context) throws RemoteException
     {
-        //TOD
+        //TODO
+    	/*
+    	 * If source 6= guid, call
+			successor.reduceContext(source, reducer, context). Then, create a new
+			2
+			thread to avoid blocking in which you have to read in order BM ap, and
+			execute reducer.reduce(key, value, context).
+			Note: It must exist a metafile called ”fileName reduce” where fileName
+			is the original logical file that you are sorting with n pages. Each
+			peer creates a page (guid) with the data in BReduce and insert into
+			”fileName reduce”.
+    	 */
    }
     public void mapContext(Long page, MapReduceInterface mapper,
     ChordMessageInterface context) throws RemoteException
     {
         //TODO
+    	/*
+    	 * call setWorkingPeer(page) then opens the page (guid),
+			read line-by-line, parse and execute
+			mapper.map(key, value, context). When it has read the complete file,
+			it calls context.completeP eer(page, n) where n is the number of rows.
+			You have to create a new thread to avoid blocking. Observe that context
+			is the instance of the coordinator or initiator.
+
+    	 */
     }
 
     public void emitMap(Long key, String value) throws RemoteException
@@ -344,50 +364,11 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         public void reduce(Long key, List< String > value,
         ChordMessageInterface context) throws IOException
     };
-    */
 
 	@Override
 	public void setWorkingPeer() throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void completePeer(Long page, Long n) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Boolean isPhaseCompleted() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void reduceContext(Long source, MapReduceInterface reducer,
-			ChordMessageInterface context) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mapContext(Long page, MapReduceInterface mapper,
-			ChordMessageInterface context) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void emitMap(Long key, String value) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void emitReduce(Long page, String value)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
