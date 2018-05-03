@@ -4,16 +4,19 @@ import java.rmi.server.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.security.*;
 
 public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordMessageInterface {
     public static final int M = 2;
-    
+    private DFS distributedFileSystem;
+
     //DFS
     Registry registry;    // rmi registry for lookup the remote objects.
     ChordMessageInterface successor;
@@ -28,7 +31,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     private Map <Long,List<String>> BMap;
     private Map <Long,String> BReduce;
     
-    //DFS
+    
     public Boolean isKeyInSemiCloseInterval(long key, long key1, long key2)
     {
        if (key1 < key2)
@@ -36,6 +39,20 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
       else
           return (key > key1 || key <= key2);
     }
+    //chord
+    private long md5(String objectName) {
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(objectName.getBytes());
+            BigInteger bigInt = new BigInteger(1,m.digest());
+            return Math.abs(bigInt.longValue());
+        } catch(NoSuchAlgorithmException e) {
+                //e.printStackTrace();
+                System.out.println("Caught error in md5() method");
+        }
+        return 0;
+    } //end md5() method
 
     public Boolean isKeyInOpenInterval(long key, long key1, long key2)
     {
@@ -313,7 +330,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     {
         //TODO
         //read the file, line by line. Parse pass to the mapper.map
-        // 
+        // 2
          FileStream in = context.get(page);
          File File = in.getFile();
 
@@ -339,15 +356,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                     value = line.substring(i +1, line.length());
                     key = line.substring(0,i);
                     System.out.println(key);
-                  //we need to convert the key to a long
-                    try { 
-                        Long longObject = new Long(key);
-                        key2 = longObject.longValue();   
-                        System.out.print("The key is : " + key2 + "  and the value is: ");
-                        System.out.println(value);
-                    } catch (NumberFormatException e) {
-                          System.out.println("NumberFormatException: " + e.getMessage());
-                         } //ends try catch
+
+                    key2 = md5(key);
+
+                    System.out.print("The key is : " + key2 + "  and the value is: ");
+                    System.out.println(value);
+                    //do emit right here
                  }
             } // ends for loop
         } //ends while loop
