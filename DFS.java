@@ -267,11 +267,7 @@ public class DFS implements Serializable {
      * @throws Exception
      */
     public void delete(String fileName) throws Exception {
-        // TODO: remove all the pages in the entry fileName in the Metadata and then the entry
-        // for each page in Metadata.filename
-        //     peer = chord.locateSuccessor(page.guid);
-        //     peer.delete(page.guid)
-        // delete Metadata.filename
+
             Metadata metadata = readMetaData(); //always read first when creating
            metadata.delete(fileName);
            writeMetaData(metadata);

@@ -307,7 +307,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //add page, make a refereence file distributed sytem
      }*/
     public void mapContext(Long page, MapReduceInterface mapper,
-    ChordMessageInterface context) throws RemoteException
+    ChordMessageInterface context) throws RemoteException, IOException
     {
         //TODO
         //read the file, line by line. Parse pass to the mapper.map
