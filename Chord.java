@@ -4,6 +4,8 @@ import java.rmi.server.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
@@ -307,7 +309,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //add page, make a refereence file distributed sytem
      }*/
     public void mapContext(Long page, MapReduceInterface mapper,
-    ChordMessageInterface context) throws RemoteException, IOException
+    ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {
         //TODO
         //read the file, line by line. Parse pass to the mapper.map
@@ -318,7 +320,11 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
          Scanner parse = new Scanner(File);
          System.out.println("Parseing you file");
          String line;
+         String key;
+         String value;
          int count = 0;
+         long key2;
+
          //reads each line of the file
          while(parse.hasNextLine())
          {
@@ -330,13 +336,25 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                 if(line.charAt(i) == ';')
                 {
                     count = count + 1;
-                }
-            }
-        }
+                    value = line.substring(i +1, line.length());
+                    key = line.substring(0,i);
+                    System.out.println(key);
+                  //we need to convert the key to a long
+                    try { 
+                        Long longObject = new Long(key);
+                        key2 = longObject.longValue();   
+                        System.out.print("The key is : " + key2 + "  and the value is: ");
+                        System.out.println(value);
+                    } catch (NumberFormatException e) {
+                          System.out.println("NumberFormatException: " + e.getMessage());
+                         } //ends try catch
+                 }
+            } // ends for loop
+        } //ends while loop
               //read each line, break it at a colon. Just testing if I can do that with a single file
         //give to emitMap
             System.out.println("Counted " + count + " this many ;");
-        }
+        } // ends method
 
     
 
