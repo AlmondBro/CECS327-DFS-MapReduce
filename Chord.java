@@ -314,16 +314,31 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         // 
          FileStream in = context.get(page);
          File File = in.getFile();
-         File.getAbsolutePath(); 
-         System.out.println("Files path: " + File.getAbsolutePath());
-         String text = "" +      File.getAbsolutePath(); 
-         Path path = Paths.get(text);       
-         byte[] bytes = Files.readAllBytes(path);
-         String  text2 = new String(bytes, StandardCharsets.UTF_8);
-         //was test if I can do what I within the userinterface with the chord.java
-         System.out.println("Files contents: " + text2);
+
+         Scanner parse = new Scanner(File);
+         System.out.println("Parseing you file");
+         String line;
+         int count = 0;
+         //reads each line of the file
+         while(parse.hasNextLine())
+         {
+            // gets one line of file
+            line = parse.nextLine();
+            for(int i = 0; i < line.length(); i++)
+            {
+                //parse the one line
+                if(line.charAt(i) == ';')
+                {
+                    count = count + 1;
+                }
+            }
+        }
+              //read each line, break it at a colon. Just testing if I can do that with a single file
         //give to emitMap
-    }
+            System.out.println("Counted " + count + " this many ;");
+        }
+
+    
 
  /*   public void emitMap(Long key, String value) throws RemoteException
     {
