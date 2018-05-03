@@ -4,6 +4,7 @@ import java.rmi.server.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.nio.file.Files;
@@ -313,7 +314,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     {
         //TODO
         //read the file, line by line. Parse pass to the mapper.map
-        // 
+        // 2
          FileStream in = context.get(page);
          File File = in.getFile();
 
@@ -340,14 +341,20 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                     key = line.substring(0,i);
                     System.out.println(key);
                   //we need to convert the key to a long
-                    try { 
+                    /*try { 
                         Long longObject = new Long(key);
                         key2 = longObject.longValue();   
                         System.out.print("The key is : " + key2 + "  and the value is: ");
                         System.out.println(value);
                     } catch (NumberFormatException e) {
                           System.out.println("NumberFormatException: " + e.getMessage());
-                         } //ends try catch
+                         } //ends try catch*/
+                    
+                    BigInteger bigKey = new BigInteger(key);
+                    
+                    System.out.print("The key is : " + bigKey + "  and the value is: ");
+                    System.out.println(value);
+                    
                  }
             } // ends for loop
         } //ends while loop
