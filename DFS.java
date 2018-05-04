@@ -359,6 +359,7 @@ public class DFS implements Serializable {
         Metadata metadata = readMetaData();
         int size = metadata.getFile(filename).getNumOfPage();
         System.out.println("Number of pages in file:" + size);
+        
         for(int i = 0; i < size; i++)
         {
             Page page = metadata.getFile(filename).getPage(i);
@@ -368,9 +369,19 @@ public class DFS implements Serializable {
            peer.mapContext(page.getGUID(), mapreduce, chord);
 
         }
-
           //wait until context.hasCompleted() = true
-// reduce phase
+        while(!chord.isPhaseCompleted())
+        {
+        	Thread.sleep(1000);
+        }
+        
+        chord.reduceContext(guid, mapreduce, chord);
+        
+        while(!chord.isPhaseCompleted())
+        {
+        	Thread.sleep(1000);
+        }
+	// reduce phase
    //reduceContext(guid, mapreduce, chord);
         System.out.println("Within bounds");
     }

@@ -372,6 +372,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //TODO
         //read the file, line by line. Parse pass to the mapper.map
         // 2
+    	// TODO: RUN A THREAD HERE
          FileStream in = context.get(page);
          File File = in.getFile();
 
