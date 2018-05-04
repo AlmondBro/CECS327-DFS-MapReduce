@@ -366,8 +366,14 @@ public class DFS implements Serializable {
        //     for each page in metafile.file
   
            peer.mapContext(page.getGUID(), mapreduce, chord);
+           if(peer.isPhaseCompleted() == true)
+           {
+              peer.reduceContext(page.getGUID(), mapreduce, chord);
+
+           }
 
         }
+        
 
           //wait until context.hasCompleted() = true
 // reduce phase

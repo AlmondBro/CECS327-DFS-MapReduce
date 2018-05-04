@@ -318,19 +318,18 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     
             return set.isEmpty();
     }
- /*public void reduceContext(Long source, MapReduceInterface reducer,
+    public void reduceContext(Long source, MapReduceInterface reducer,
     ChordMessageInterface context) throws RemoteException
     {
         //TOD
+      
         //creates and stores local  page
         //add page, make a refereence file distributed sytem
-     }*/
-    public void mapContext(Long page, MapReduceInterface mapper,
-    ChordMessageInterface context) throws RemoteException, IOException, Exception 
+        
+     }
+    public void mapContext(Long page, MapReduceInterface mapper, ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {
-        //TODO
-        //read the file, line by line. Parse pass to the mapper.map
-        // 2
+
          FileStream in = context.get(page);
          File File = in.getFile();
 
@@ -356,33 +355,33 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                     value = line.substring(i +1, line.length());
                     key = line.substring(0,i);
                     System.out.println(key);
-
                     key2 = md5(key);
+                    mapper.map(key2, value, this);
 
-                    System.out.print("The key is : " + key2 + "  and the value is: ");
-                    System.out.println(value);
-                    //do emit right here
+                //    System.out.print("The key is : " + key2 + "  and the value is: ");
+                //    System.out.println(value);
+                 
                  }
             } // ends for loop
         } //ends while loop
               //read each line, break it at a colon. Just testing if I can do that with a single file
         //give to emitMap
-            System.out.println("Counted " + count + " this many ;");
+         //   System.out.println("Counted " + count + " this many ;");
         } // ends method
 
     
 
- /*   public void emitMap(Long key, String value) throws RemoteException
+     public void emitMap(Long key, String value) throws RemoteException
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
         {
         // insert in the BMap. Allows repetition
             if (!BMap.containsKey(key))
             {
-            List< String > list = new List< String >();
+            List< String > list = new ArrayList< String >();
             BMap.put(key,list);
             }
-        BMap.get(key).add(value);
+            BMap.get(key).add(value);
         }
         else
             {
@@ -390,6 +389,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                 peer.emitMap(key, value);
             }
     }
+    /*
     public void emitReduce(Long key, String value) throws RemoteException
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
