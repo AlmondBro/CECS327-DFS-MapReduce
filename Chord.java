@@ -318,16 +318,72 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     
             return set.isEmpty();
     }
-    public void reduceContext(Long source, MapReduceInterface reducer,
-    ChordMessageInterface context) throws RemoteException
+ public void reduceContext(Long source, MapReduceInterface reducer, ChordMessageInterface context) throws RemoteException
     {
-        //TOD
-      
+        //TODO
         //creates and stores local  page
         //add page, make a refereence file distributed sytem
-        
+        /*
+         * If source =/= guid, call
+			successor.reduceContext(source, reducer, context). Then, create a new
+			thread to avoid blocking in which you have to read in order BMap, and
+			execute reducer.reduce(key, value, context).
+			Note: It must exist a metafile called ”fileName_reduce” where fileName
+			is the original logical file that you are sorting with n pages. Each
+			peer creates a page (guid) with the data in BReduce and insert into
+			”fileName_reduce”.
+         */
+	 	if (guid != source)
+	 	{
+	 		successor.reduceContext(source, reducer, context);
+	 	}
+	 	
+	 	class MyThread extends Thread {
+
+	 		public MyThread() 
+	 		{
+	 			  
+	 		}
+
+	 		public void run() 
+	 		{
+	 			
+	 			for(Long key : BMap.keySet())
+	 			{
+		 			try 
+		 			{
+						reducer.reduce(key, BMap.get(key), context);
+					} 
+		 			catch (IOException e) 
+		 			{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	 			}
+	 		}
+	 	}
+	 	
+	 	MyThread thread = new MyThread();
+	 	thread.run();
+
      }
-    public void mapContext(Long page, MapReduceInterface mapper, ChordMessageInterface context) throws RemoteException, IOException, Exception 
+ 
+ 	public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
+ 	{
+ 		PrintWriter writer = new PrintWriter(fileName + "_reduce", "UTF-8");
+	 	
+	 	for(Long key : BReduce.keySet())
+	 	{
+	 		writer.println(key + "; " + BReduce.get(key));
+	 	}
+	 		
+	 	writer.close();
+ 	}
+ 
+ 
+ 
+    public void mapContext(Long page, MapReduceInterface mapper,
+    ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {
 
          FileStream in = context.get(page);
@@ -371,14 +427,23 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
     
 
+<<<<<<< HEAD
      public void emitMap(Long key, String value) throws RemoteException
     {
+=======
+public void emitMap(Long key, String value) throws RemoteException
+    { 
+>>>>>>> Austin2
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
         {
         // insert in the BMap. Allows repetition
             if (!BMap.containsKey(key))
             {
+<<<<<<< HEAD
             List< String > list = new ArrayList< String >();
+=======
+            List<String> list = new ArrayList<String>();
+>>>>>>> Austin2
             BMap.put(key,list);
             }
             BMap.get(key).add(value);
@@ -394,15 +459,15 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
         {
-                // insert in the BReduce
-        BReduce(key, value);
+            // insert in the BReduce
+        	BReduce.put(key, value);
         }else
             {
-             4ChordMessageInterface peer = this.locateSuccessor(key);
+             ChordMessageInterface peer = this.locateSuccessor(key);
              peer.emitReduce(key, value);
          }
      }
-*/
+
    /*  public interface ChordMessageInterface
     {
         public void map(Long key, String value,

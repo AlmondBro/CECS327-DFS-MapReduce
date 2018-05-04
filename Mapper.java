@@ -11,6 +11,6 @@ public class Mapper implements MapReduceInterface {
 	}
 	public void reduce(Long key, List< String > value, ChordMessageInterface context) throws IOException
 	{
-	//	context.emitReduce(key, word +":"+ value.size());
+		context.emitReduce(key, value.get(0) +":"+ value.size());
 	}
 }

@@ -21,11 +21,11 @@ public interface ChordMessageInterface extends Remote
     //sets of methods to override Map-Reduce
    public void setWorkingPeer() throws IOException;
    public void completePeer(Long page, Long n) throws RemoteException;
-   public Boolean isPhaseCompleted() throws IOException;
-   public void reduceContext(Long source, MapReduceInterface reducer,
-    ChordMessageInterface context) throws RemoteException;
+    public Boolean isPhaseCompleted() throws IOException;
+    public void reduceContext(Long source, MapReduceInterface reducer, ChordMessageInterface context) throws RemoteException;
     public void mapContext(Long page, MapReduceInterface mapper,ChordMessageInterface context) throws RemoteException, IOException,Exception ;
     public void emitMap(Long key, String value) throws RemoteException;
- /*   public void emitReduce(Long page, List<String> value) throws RemoteException;
-*/
+    public void emitReduce(Long page, String value) throws RemoteException;
+    public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException;
+
 }
