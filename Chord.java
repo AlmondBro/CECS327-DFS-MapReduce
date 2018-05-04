@@ -331,7 +331,6 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
 	 		public void run() 
 	 		{
-	 			Mapper reducer = new Mapper();
 	 			
 	 			for(Long key : BMap.keySet())
 	 			{
@@ -350,8 +349,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 	
 	 	MyThread thread = new MyThread();
 	 	thread.run();
-	 	
-	 	PrintWriter writer = new PrintWriter(fileName + "_reduce", "UTF-8");
+
+     }
+ 
+ 	public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
+ 	{
+ 		PrintWriter writer = new PrintWriter(fileName + "_reduce", "UTF-8");
 	 	
 	 	for(Long key : BReduce.keySet())
 	 	{
@@ -359,8 +362,10 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 	}
 	 		
 	 	writer.close();
-	 	
-     }
+ 	}
+ 
+ 
+ 
     public void mapContext(Long page, MapReduceInterface mapper,
     ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {

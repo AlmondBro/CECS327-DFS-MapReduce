@@ -26,5 +26,6 @@ public interface ChordMessageInterface extends Remote
     public void mapContext(Long page, MapReduceInterface mapper,ChordMessageInterface context) throws RemoteException, IOException,Exception ;
     public void emitMap(Long key, String value) throws RemoteException;
     public void emitReduce(Long page, String value) throws RemoteException;
+    public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException;
 
 }
