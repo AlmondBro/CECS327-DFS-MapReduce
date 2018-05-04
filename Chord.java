@@ -427,23 +427,14 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
     
 
-<<<<<<< HEAD
-     public void emitMap(Long key, String value) throws RemoteException
-    {
-=======
 public void emitMap(Long key, String value) throws RemoteException
     { 
->>>>>>> Austin2
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
         {
         // insert in the BMap. Allows repetition
             if (!BMap.containsKey(key))
             {
-<<<<<<< HEAD
-            List< String > list = new ArrayList< String >();
-=======
             List<String> list = new ArrayList<String>();
->>>>>>> Austin2
             BMap.put(key,list);
             }
             BMap.get(key).add(value);
