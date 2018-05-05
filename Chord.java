@@ -412,7 +412,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                     key = line.substring(0,i);
                     System.out.println(key);
                     key2 = md5(key);
-                    mapper.map(key2, value, this);
+                    mapper.map(key2, value, context);
 
                 //    System.out.print("The key is : " + key2 + "  and the value is: ");
                 //    System.out.println(value);
@@ -445,7 +445,7 @@ public void emitMap(Long key, String value) throws RemoteException
                 peer.emitMap(key, value);
             }
     }
-    /*
+    
     public void emitReduce(Long key, String value) throws RemoteException
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
