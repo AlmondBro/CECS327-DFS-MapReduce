@@ -353,6 +353,9 @@ public class DFS implements Serializable {
     }
     public void runMapReduce(String filename) throws Exception
     {
+     
+     Thread runMapThread = new Thread(){
+      public void run(){
         System.out.println("Starting Map Reduce");
         String name = filename;
         MapReduceInterface mapreduce = new Mapper();
@@ -366,6 +369,7 @@ public class DFS implements Serializable {
        //     for each page in metafile.file
   
            peer.mapContext(page.getGUID(), mapreduce, chord);
+           sleep(1000); //If you don't sleep here, then the thread will call map and by the time map is called the peer's set is already empty so your next line is useless
            if(peer.isPhaseCompleted() == true)
            {
               peer.reduceContext(page.getGUID(), mapreduce, chord);
@@ -373,12 +377,14 @@ public class DFS implements Serializable {
            }
 
         }
-        
+      }
 
+      runMapThread.start() //Start the thread, only purpose of this is to create the delay between the map
           //wait until context.hasCompleted() = true
 // reduce phase
    //reduceContext(guid, mapreduce, chord);
         System.out.println("Within bounds");
+     }
     }
 
    
