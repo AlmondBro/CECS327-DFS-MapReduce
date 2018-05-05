@@ -368,7 +368,10 @@ public class DFS implements Serializable {
             ChordMessageInterface peer = chord.locateSuccessor(page.getGUID());
        //     for each page in metafile.file
   
-           peer.mapContext(page.getGUID(), mapreduce, chord);
+           
+//           peer.mapContext(page.getGUID(), mapreduce, chord);
+           chord.mapContext(page.getGUID(), mapreduce, peer);
+         //You want any process (chord) to dictact what other process do, so in this case, the page belongs in the peer, so you want the peer to do work from any chord.
            sleep(1000); //If you don't sleep here, then the thread will call map and by the time map is called the peer's set is already empty so your next line is useless
            if(peer.isPhaseCompleted() == true)
            {
