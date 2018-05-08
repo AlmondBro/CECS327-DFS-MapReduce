@@ -353,42 +353,80 @@ public class DFS implements Serializable {
     }
     public void runMapReduce(String filename) throws Exception
     {
-     
-     Thread runMapThread = new Thread(){
-      public void run(){
-        System.out.println("Starting Map Reduce");
-        String name = filename;
-        MapReduceInterface mapreduce = new Mapper();
-        Metadata metadata = readMetaData();
-        int size = metadata.getFile(filename).getNumOfPage();
-        System.out.println("Number of pages in file:" + size);
-        for(int i = 0; i < size; i++)
-        {
-            Page page = metadata.getFile(filename).getPage(i);
-            ChordMessageInterface peer = chord.locateSuccessor(page.getGUID());
-       //     for each page in metafile.file
-  
-           
-//           peer.mapContext(page.getGUID(), mapreduce, chord);
-           chord.mapContext(page.getGUID(), mapreduce, peer);
-         //You want any process (chord) to dictact what other process do, so in this case, the page belongs in the peer, so you want the peer to do work from any chord.
-           sleep(1000); //If you don't sleep here, then the thread will call map and by the time map is called the peer's set is already empty so your next line is useless
-           if(peer.isPhaseCompleted() == true)
-           {
-              peer.reduceContext(page.getGUID(), mapreduce, chord);
+    	Thread runMapThread = new Thread()
+    	{
+    		public void run() 
+    		{
+		        System.out.println("Starting Map Reduce");
+		        String name = filename;
+		        MapReduceInterface mapreduce = new Mapper();
+		        Metadata metadata = new Metadata();
+				try {
+					metadata = readMetaData();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        int size = 0;
+				try {
+					size = metadata.getFile(filename).getNumOfPage();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        System.out.println("Number of pages in file:" + size);
+	        
+		        for(int i = 0; i < size; i++)
+		        {
+		            Page page = null;
+					try {
+						page = metadata.getFile(filename).getPage(i);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            ChordMessageInterface peer = null;
+					try {
+						peer = chord.locateSuccessor(page.getGUID());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            // for each page in metafile.file
+	  
+	           
+		            // peer.mapContext(page.getGUID(), mapreduce, chord);
+		            try {
+						chord.mapContext(page.getGUID(), mapreduce, peer);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            //You want any process (chord) to dictact what other process do, so in this case, the page belongs in the peer, so you want the peer to do work from any chord.
+		            try {
+						sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
+		            //If you don't sleep here, then the thread will call map and by the time map is called the peer's set is already empty so your next line is useless
+		            try {
+						if(peer.isPhaseCompleted() == true)
+						{
+							peer.reduceContext(page.getGUID(), mapreduce, chord);
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+    		}
+    	};
 
-           }
-
-        }
-      }
-
-      runMapThread.start() //Start the thread, only purpose of this is to create the delay between the map
+      runMapThread.start();//Start the thread, only purpose of this is to create the delay between the map
           //wait until context.hasCompleted() = true
-// reduce phase
-   //reduceContext(guid, mapreduce, chord);
-        System.out.println("Within bounds");
+      // reduce phase
+      //reduceContext(guid, mapreduce, chord);
+      System.out.println("Within bounds");
      }
-    }
-
-   
 }
