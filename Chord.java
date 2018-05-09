@@ -400,10 +400,16 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
          long key2;
         context.setWorkingPeer(page);
          //reads each line of the file
+         class MyThread extends Thread {
 
-        public void run()
+            public MyThread() 
+            {
+                  
+            }
+        public void run();
         {
          //start 
+         try {
          while(parse.hasNextLine())
          {
             // gets one line of file
@@ -430,11 +436,18 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         //give to emitMap
          //   System.out.println("Counted " + count + " this many ;");
          context.completePeer(page, count);
+        } 
+        catch (Exception e) 
+        {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
     }
 
          //
         MyThread thread = new MyThread();
-	 	thread.run();
+         thread.run();
+    }
         } // ends method
 
     
