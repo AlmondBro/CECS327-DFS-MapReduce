@@ -304,8 +304,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	       System.out.println("Cannot retrive id");
         }
     }
-    //MapReduce
-    public void setWorkingPeer(Long page) throws IOException{
+    //MapReduce	
+    @Override
+    public void setWorkingPeer(Long page) throws RemoteException{
 
             set.add(page);
 
@@ -345,14 +346,15 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 			  
 	 		}
 
-	 		public void run() 
+	 		public void run();
 	 		{
 	 			
 	 			for(Long key : BMap.keySet())
 	 			{
 		 			try 
 		 			{
-						reducer.reduce(key, BMap.get(key), context);
+                        reducer.reduce(key, BMap.get(key), context);
+
 					} 
 		 			catch (IOException e) 
 		 			{
@@ -386,7 +388,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {
 
-         FileStream in = context.get(page);
+         FileStream in = this.get(page);
          File File = in.getFile();
 
          Scanner parse = new Scanner(File);
@@ -396,8 +398,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
          String value;
          int count = 0;
          long key2;
-
+        context.setWorkingPeer(page);
          //reads each line of the file
+
+        public void run()
+        {
+         //start 
          while(parse.hasNextLine())
          {
             // gets one line of file
@@ -408,12 +414,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
                 if(line.charAt(i) == ';')
                 {
                     count = count + 1;
-                    value = line.substring(i +1, line.length());
+                    value = line.substring(i +1);
                     key = line.substring(0,i);
                     System.out.println(key);
-                    key2 = md5(key);
-                    mapper.map(key2, value, context);
-
+                    
+                    mapper.map(Long.toLong(key), value, context);
+                    break;
                 //    System.out.print("The key is : " + key2 + "  and the value is: ");
                 //    System.out.println(value);
                  
@@ -423,6 +429,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
               //read each line, break it at a colon. Just testing if I can do that with a single file
         //give to emitMap
          //   System.out.println("Counted " + count + " this many ;");
+         context.completePeer(page, count);
+    }
+
+         //
+        MyThread thread = new MyThread();
+	 	thread.run();
         } // ends method
 
     
@@ -459,17 +471,5 @@ public void emitMap(Long key, String value) throws RemoteException
          }
      }
 
-   /*  public interface ChordMessageInterface
-    {
-        public void map(Long key, String value,
-        ChordMessageInterface context) throws IOException;
-        public void reduce(Long key, List< String > value,
-        ChordMessageInterface context) throws IOException
-    };*/
 
-	@Override
-	public void setWorkingPeer() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -19,7 +19,7 @@ public interface ChordMessageInterface extends Remote
     public void delete(long guidObject) throws IOException, RemoteException;
 
     //sets of methods to override Map-Reduce
-   public void setWorkingPeer() throws IOException;
+   public void setWorkingPeer(Long page) throws RemoteException;
    public void completePeer(Long page, Long n) throws RemoteException;
     public Boolean isPhaseCompleted() throws IOException;
     public void reduceContext(Long source, MapReduceInterface reducer, ChordMessageInterface context) throws RemoteException;

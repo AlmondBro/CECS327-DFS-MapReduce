@@ -241,11 +241,7 @@ public class DFS implements Serializable {
         String listOfFiles = "";
     	listOfFiles = metadata.getFileNames();
         return listOfFiles;
-       /*
-        Metadata metadata = gson.fromJson(json, Metadata.class);
-    	//listOfFiles = metadata.getFileNames();
-        setStringOfFiles(metadata.getFileNames());
-        return this.getStringOfFiles(); */
+
     }
     
      /**
@@ -354,8 +350,7 @@ public class DFS implements Serializable {
     public void runMapReduce(String filename) throws Exception
     {
      
-     Thread runMapThread = new Thread(){
-      public void run(){
+  
         System.out.println("Starting Map Reduce");
         String name = filename;
         MapReduceInterface mapreduce = new Mapper();
@@ -369,26 +364,36 @@ public class DFS implements Serializable {
        //     for each page in metafile.file
   
            
-//           peer.mapContext(page.getGUID(), mapreduce, chord);
-           chord.mapContext(page.getGUID(), mapreduce, peer);
-         //You want any process (chord) to dictact what other process do, so in this case, the page belongs in the peer, so you want the peer to do work from any chord.
-           sleep(1000); //If you don't sleep here, then the thread will call map and by the time map is called the peer's set is already empty so your next line is useless
-           if(peer.isPhaseCompleted() == true)
-           {
-              peer.reduceContext(page.getGUID(), mapreduce, chord);
-
-           }
-
+            /*chord is responsible ditatctig what other processes will do
+            */
+           peer.mapContext(page.getGUID(), mapreduce, chord);        
+        }   
+        if(peer.isPhaseCompleted() == true)
+        {
+            sleep(1000);  //need to sleep so teh peer set isn't empty when map is called  
         }
-      }
-
-      runMapThread.start() //Start the thread, only purpose of this is to create the delay between the map
-          //wait until context.hasCompleted() = true
-// reduce phase
-   //reduceContext(guid, mapreduce, chord);
-        System.out.println("Within bounds");
-     }
-    }
+        chord.successor.reduceContext(chord.getId(), mapreduce, chord);
+ 
+      
 
    
+     while(context.hasCompleted()) 
+     {
+         sleep(1000);
+     }  //wait until context.hasCompleted() = true
+
+
+
+        System.out.println("All reduce has finished");
+        createPage(context, this, name);
+
+     
+    }
+
+   public void createPage(ChordMessageInterface context, DFS DFS, String name)
+   {
+        String fileName = name + "_Reduce";
+        DFS.touch(fileName);
+      //  DFS.append(name, context);
+   }
 }
