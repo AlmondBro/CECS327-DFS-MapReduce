@@ -353,8 +353,13 @@ public class DFS implements Serializable {
     }
     public void runMapReduce(String filename) throws Exception
     {
-    	Thread runMapThread = new Thread()
+    	
+    	class NewThread extends Thread 
     	{
+    		public NewThread()
+    		{
+    			
+    		}
     		public void run() 
     		{
 		        System.out.println("Starting Map Reduce");
@@ -421,9 +426,9 @@ public class DFS implements Serializable {
 					}
 		        }
     		}
-    	};
-
-      runMapThread.start();//Start the thread, only purpose of this is to create the delay between the map
+    	}
+    	NewThread runMapThread = new NewThread();
+    	runMapThread.run();//Start the thread, only purpose of this is to create the delay between the map
           //wait until context.hasCompleted() = true
       // reduce phase
       //reduceContext(guid, mapreduce, chord);
