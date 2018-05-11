@@ -370,7 +370,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
      }
  
- 	public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
+ 	/*public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
  	{
  		PrintWriter writer = new PrintWriter(fileName + "_reduce", "UTF-8");
 	 	
@@ -380,7 +380,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 	}
 	 		
 	 	writer.close();
- 	}
+ 	}*/
  
  
  

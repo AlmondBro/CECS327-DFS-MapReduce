@@ -72,6 +72,7 @@ public class DFS implements Serializable {
         this.port = port;
         long guid = md5("" + port);
         setGuid(guid);
+//        System.out.println(port + " | " + guid);
         chord = new Chord(port, guid);
         Files.createDirectories(Paths.get(guid+"/repository/"));
 
