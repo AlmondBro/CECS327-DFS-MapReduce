@@ -346,7 +346,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 			  
 	 		}
 
-	 		public void run();
+	 		public void run()
 	 		{
 	 			
 	 			for(Long key : BMap.keySet())
@@ -370,7 +370,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
      }
  
- 	public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
+ 	/*public void createReduceFile(String fileName) throws FileNotFoundException, UnsupportedEncodingException
  	{
  		PrintWriter writer = new PrintWriter(fileName + "_reduce", "UTF-8");
 	 	
@@ -380,7 +380,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 	}
 	 		
 	 	writer.close();
- 	}
+ 	}*/
  
  
  
@@ -393,62 +393,68 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
          Scanner parse = new Scanner(File);
          System.out.println("Parseing you file");
-         String line;
-         String key;
-         String value;
-         int count = 0;
+         
+         
+         
          long key2;
-        context.setWorkingPeer(page);
+         context.setWorkingPeer(page);
          //reads each line of the file
-         class MyThread extends Thread {
-
-            public MyThread() 
-            {
-                  
-            }
-        public void run();
-        {
-         //start 
-         try {
-         while(parse.hasNextLine())
+         class Thread2 extends Thread 
          {
-            // gets one line of file
-            line = parse.nextLine();
-            for(int i = 0; i < line.length(); i++)
-            {
-                //parse the one line
-                if(line.charAt(i) == ';')
-                {
-                    count = count + 1;
-                    value = line.substring(i +1);
-                    key = line.substring(0,i);
-                    System.out.println(key);
-                    
-                    mapper.map(Long.toLong(key), value, context);
-                    break;
-                //    System.out.print("The key is : " + key2 + "  and the value is: ");
-                //    System.out.println(value);
-                 
-                 }
-            } // ends for loop
-        } //ends while loop
-              //read each line, break it at a colon. Just testing if I can do that with a single file
-        //give to emitMap
-         //   System.out.println("Counted " + count + " this many ;");
-         context.completePeer(page, count);
-        } 
-        catch (Exception e) 
-        {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-       }
-    }
-
+        	 public Thread2() 
+        	 {
+                  
+        	 }
+        	 
+        	 public void run()
+        	 {
+        		 int count = 0;
+        		 String line;
+        		 String key;
+                 String value;
+		         //start 
+		         try 
+		         {
+			         while(parse.hasNextLine())
+			         {
+			            // gets one line of file
+			        	 
+			            line = parse.nextLine();
+			            
+			            for(int i = 0; i < line.length(); i++)
+			            {
+			                //parse the one line
+			                if(line.charAt(i) == ';')
+			                {
+			                    count = count + 1;
+			                    value = line.substring(i +1);
+			                    key = line.substring(0,i);
+			                    System.out.println(key);
+			                    
+			                    mapper.map(Long.parseLong(key), value, context);
+			                    break;
+			                //    System.out.print("The key is : " + key2 + "  and the value is: ");
+			                //    System.out.println(value);
+			                 
+			                 }
+			            } // ends for loop
+			        } //ends while loop
+			         //read each line, break it at a colon. Just testing if I can do that with a single file
+			         //give to emitMap
+			         //   System.out.println("Counted " + count + " this many ;");
+			         context.completePeer(page, Long.parseLong(Integer.toString(count)));
+		         } 
+		         catch (Exception e) 
+		         {
+		        	 // TODO Auto-generated catch block
+		        	 e.printStackTrace();
+		         }
+        	 }
+         }
          //
-        MyThread thread = new MyThread();
-         thread.run();
-    }
-        } // ends method
+         Thread2 myThread = new Thread2();
+         myThread.run();
+     } // ends method
 
     
 

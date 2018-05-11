@@ -72,6 +72,7 @@ public class DFS implements Serializable {
         this.port = port;
         long guid = md5("" + port);
         setGuid(guid);
+//        System.out.println(port + " | " + guid);
         chord = new Chord(port, guid);
         Files.createDirectories(Paths.get(guid+"/repository/"));
 
@@ -357,10 +358,12 @@ public class DFS implements Serializable {
         Metadata metadata = readMetaData();
         int size = metadata.getFile(filename).getNumOfPage();
         System.out.println("Number of pages in file:" + size);
+        ChordMessageInterface peer = null;
+        
         for(int i = 0; i < size; i++)
         {
             Page page = metadata.getFile(filename).getPage(i);
-            ChordMessageInterface peer = chord.locateSuccessor(page.getGUID());
+            peer = chord.locateSuccessor(page.getGUID());
        //     for each page in metafile.file
   
            
@@ -370,27 +373,27 @@ public class DFS implements Serializable {
         }   
         if(peer.isPhaseCompleted() == true)
         {
-            sleep(1000);  //need to sleep so teh peer set isn't empty when map is called  
+            Thread.sleep(1000);  //need to sleep so teh peer set isn't empty when map is called  
         }
         chord.successor.reduceContext(chord.getId(), mapreduce, chord);
  
       
 
    
-     while(context.hasCompleted()) 
+     while(chord.isPhaseCompleted()) 
      {
-         sleep(1000);
+         Thread.sleep(1000);
      }  //wait until context.hasCompleted() = true
 
 
 
         System.out.println("All reduce has finished");
-        createPage(context, this, name);
+        createPage(chord, this, name);
 
      
     }
 
-   public void createPage(ChordMessageInterface context, DFS DFS, String name)
+   public void createPage(ChordMessageInterface context, DFS DFS, String name) throws Exception
    {
         String fileName = name + "_Reduce";
         DFS.touch(fileName);

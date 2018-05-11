@@ -51,6 +51,7 @@ public class Client
             To compile, run:
                 javac -cp gson-2.8.2.jar Client.java Chord.java ChordMessageInterface.java DFS.java Metadata.java MetaFile.java Page.java UserInterface.java FileStream.java; java -classpath ".:gson-2.8.2.jar" Client 3000
         */
+        System.out.println(args[0]);
         Client client = new Client( Integer.parseInt(args[0]));
         //hello();
         System.exit(0);
