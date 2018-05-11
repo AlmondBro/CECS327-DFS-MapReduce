@@ -346,7 +346,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	 			  
 	 		}
 
-	 		public void run();
+	 		public void run()
 	 		{
 	 			
 	 			for(Long key : BMap.keySet())
