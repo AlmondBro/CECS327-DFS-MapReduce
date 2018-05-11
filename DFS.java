@@ -397,6 +397,7 @@ public class DFS implements Serializable {
    {
         String fileName = name + "_Reduce";
         DFS.touch(fileName);
+        System.out.println(fileName + " was created");
       //  DFS.append(name, context);
    }
 }

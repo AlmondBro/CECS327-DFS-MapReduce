@@ -39,7 +39,7 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
       else
           return (key > key1 || key <= key2);
     }
-    //chord
+    
     private long md5(String objectName) {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
@@ -251,10 +251,13 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
           //e.printStackTrace();
       }
     }
-       
+    //Chord Constructor
     public Chord(int port, long guid) throws RemoteException {
         int j;
-	    finger = new ChordMessageInterface[M];
+        set = new TreeSet<Long>();
+        BMap = new TreeMap<Long, List<String>>();
+        BReduce = new TreeMap<Long, String>();
+        finger = new ChordMessageInterface[M];
         for (j=0;j<M; j++) {
 	       finger[j] = null;
      	}
