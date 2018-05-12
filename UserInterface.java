@@ -122,7 +122,7 @@ public class UserInterface {
         System.out.println("#4:\t To read (a page from a file), enter 4:\t");
         System.out.println("#5:\t To tail (read last page of a file), enter 5:\t");
         System.out.println("#6:\t To append (add a page to a file), enter 6:\t");
-        System.out.println("#7:\t To move enter 7:\t");
+        System.out.println("#7:\t To move (rename a file), enter 7:\t");
         System.out.println("#8:\t To head (read first page of a file), enter 8:\t");
         System.out.println("#9:\t Run mapReduce on a file with page(s) 9:");
         System.out.println("#10:\t To quit, enter 10:\t");

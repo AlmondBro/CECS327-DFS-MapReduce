@@ -37,7 +37,7 @@ public class Metadata {
 		//if (metafiles.size() > 0) {
 			for (int i = 0; i < metafiles.size(); i++) {
 				fileNames = "";
-				fileNames = "\n\t" + "#" + (i+1) + ":\t" + fileNames + metafiles.get(i).getName();
+				fileNames += "\n\t" + "#" + (i+1) + ":\t" + fileNames + metafiles.get(i).getName();
 			} //end for-loop
 		//} //end if-statement
 		return fileNames;

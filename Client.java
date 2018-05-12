@@ -37,18 +37,22 @@ public class Client {
         userInterface = new UserInterface(distributedFileSystem);
     } //end Client() constructor
 
+    /**
+     * Display a welcome message.
+     */
     public void welcomeMessage() {
         userInterface.welcomeMessage();
     }
-
+    /**
+     * Get the user interface with all the options.
+     */
     public void getUserInterface() throws Exception {
         userInterface.makingSelection();
     }
 
     /**
-     * Whenever a client is instantiated, it'll run an instance of the client? 
-     * Create three clients, and join two of them (overheard)
-     * @param args
+     * Main method to execute the MapReduce program
+     * @param args command line arguments
      * @throws Exception
      */
     public static void main(String args[]) throws Exception {
@@ -59,10 +63,10 @@ public class Client {
         To compile and run the program, enter this in your command line (Linux):
             javac -cp gson-2.8.2.jar Client.java Chord.java ChordMessageInterface.java DFS.java Metadata.java MetaFile.java Page.java UserInterface.java FileStream.java Mapper.java MapReduceInterface.java; java -classpath ".:gson-2.8.2.jar" Client 3000
         */
-        System.out.println(args[0]);
         Client client = new Client( Integer.parseInt(args[0]));
         client.welcomeMessage();
         client.getUserInterface();
+
         System.exit(0); 
      }  //end main() method
 } //end Client class
