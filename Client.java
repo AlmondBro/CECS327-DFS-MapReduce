@@ -9,8 +9,6 @@
  * 
  * Client.java file
  */
-
-
 import java.rmi.*;
 import java.net.*;
 import java.util.*;
@@ -20,6 +18,7 @@ import java.security.*;
 import java.nio.file.*;
 import com.google.gson.*;
 import com.google.gson.Gson;
+import java.util.Random;
 
 public class Client {
     //Private class properties/instance variables
@@ -33,21 +32,21 @@ public class Client {
      * @throws Exception
      */
     public Client(int port) throws Exception {
-        distributedFileSystem = new DFS(port);
-        userInterface = new UserInterface(distributedFileSystem);
+        this.distributedFileSystem = new DFS(port);
+        this.userInterface = new UserInterface(distributedFileSystem);
     } //end Client() constructor
 
     /**
      * Display a welcome message.
      */
     public void welcomeMessage() {
-        userInterface.welcomeMessage();
+        this.userInterface.welcomeMessage();
     }
     /**
      * Get the user interface with all the options.
      */
     public void getUserInterface() throws Exception {
-        userInterface.makingSelection();
+        this.userInterface.makingSelection();
     }
 
     /**
@@ -55,18 +54,39 @@ public class Client {
      * @param args command line arguments
      * @throws Exception
      */
-    public static void main(String args[]) throws Exception {
-        if (args.length < 1 ) {
-            throw new IllegalArgumentException("Please supply a port parameter: <port>");
-        }
-        /* 
-        To compile and run the program, enter this in your command line (Linux):
-            javac -cp gson-2.8.2.jar Client.java Chord.java ChordMessageInterface.java DFS.java Metadata.java MetaFile.java Page.java UserInterface.java FileStream.java Mapper.java MapReduceInterface.java; java -classpath ".:gson-2.8.2.jar" Client 3000
-        */
-        Client client = new Client( Integer.parseInt(args[0]));
-        client.welcomeMessage();
-        client.getUserInterface();
+    public static void main(String args[]) throws Exception, IllegalArgumentException, ArrayIndexOutOfBoundsException  {
+        Random random = new Random();
+        int randomPort = random.nextInt(5000) + 1026;
 
-        System.exit(0); 
+        /* 
+        To compile and run the program, enter this in your command line (Linux). You may supply a custom port number at the end if you wish:
+            javac -cp gson-2.8.2.jar Client.java Chord.java ChordMessageInterface.java DFS.java Metadata.java MetaFile.java Page.java UserInterface.java FileStream.java Mapper.java MapReduceInterface.java; java -classpath ".:gson-2.8.2.jar" Client
+        */
+        try {
+            Client client = new Client(randomPort);
+            
+            client.welcomeMessage();
+            client.getUserInterface();
+
+            System.exit(0);
+            
+        } catch(IllegalArgumentException e) {
+            System.out.println("\nPlease supply a port parameter: <port> upon next compilation and run. Defaulting to port #:\t" + randomPort);
+            Client client = new Client(randomPort);
+            
+            client.welcomeMessage();
+            client.getUserInterface();
+
+            System.exit(0);
+
+        } catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("\nPlease supply a port parameter: <port> upon next compilation and run. Defaulting to port #:\t" + randomPort);
+            Client client = new Client(randomPort);
+            
+            client.welcomeMessage();
+            client.getUserInterface();
+
+            System.exit(0);
+        } //end catch() block
      }  //end main() method
 } //end Client class
