@@ -253,6 +253,8 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     }
        
     public Chord(int port, long guid) throws RemoteException {
+    	set = new TreeSet<Long>();
+    	
         int j;
 	    finger = new ChordMessageInterface[M];
         for (j=0;j<M; j++) {
@@ -306,10 +308,12 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     }
     //MapReduce	
     @Override
-    public void setWorkingPeer(Long page) throws RemoteException{
-
-            set.add(page);
-
+    public void setWorkingPeer(Long page) throws RemoteException
+    {
+        if(!set.contains(page))
+        	set.add(page);
+        else
+        	System.out.println("THIS IS THE PAGE: " + page);
     }
   public void completePeer(Long page, Long n) throws RemoteException{
             this.numberOfRecords += n;
