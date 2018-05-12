@@ -32,6 +32,7 @@ public class Client {
      * @throws Exception
      */
     public Client(int port) throws Exception {
+        this.port = port;
         this.distributedFileSystem = new DFS(port);
         this.userInterface = new UserInterface(distributedFileSystem);
     } //end Client() constructor
@@ -42,6 +43,7 @@ public class Client {
     public void welcomeMessage() {
         this.userInterface.welcomeMessage();
     }
+
     /**
      * Get the user interface with all the options.
      */
