@@ -31,7 +31,14 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
     private Map <Long,List<String>> BMap;
     private Map <Long,String> BReduce;
     
-    
+    /**
+     * Returns true if the key is determined to be
+     * in the interval, false otherwise.
+     * @param key
+     * @param key1
+     * @param key2
+     * @return
+     */
     public Boolean isKeyInSemiCloseInterval(long key, long key1, long key2)
     {
        if (key1 < key2)
@@ -39,7 +46,11 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
       else
           return (key > key1 || key <= key2);
     }
-    
+    /**
+     * Hashes a string object.
+     * @param objectName
+     * @return
+     */
     private long md5(String objectName) {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
@@ -53,7 +64,14 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         }
         return 0;
     } //end md5() method
-
+    /**
+     * Returns true if the key is determined to be
+     * in the open interval.
+     * @param key
+     * @param key1
+     * @param key2
+     * @return
+     */
     public Boolean isKeyInOpenInterval(long key, long key1, long key2)
     {
       if (key1 < key2)
@@ -62,7 +80,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
           return (key > key1 || key < key2);
     }
     
-    
+    /**
+     * Posts a file to the file system
+     */
     public void put(long guidObject, FileStream stream) throws RemoteException {
       try {
           String fileName = guid+"/repository/" + guidObject;
@@ -77,7 +97,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
       }
     }
     
-    
+    /**
+     * Returns a file posted in the file system.
+     */
     public FileStream get(long guidObject) throws RemoteException{
         FileStream file = null;
         try {
@@ -93,23 +115,34 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
      
         return file;
     }
-    
+    /**
+     * Deletes a file posted in the file system
+     */
     public void delete(long guidObject) throws RemoteException {
         File file = new File("./"+guid+"/repository/" + guidObject);
         file.delete();
     }
-    
+    /**
+     * Getter method for guid
+     */
     public long getId() throws RemoteException {
         return guid;
     }
+    /**
+     * Returns true if the process is still executing
+     */
     public boolean isAlive() throws RemoteException {
 	    return true;
     }
-    
+    /**
+     * Getter method for ChordmessageInterface
+     */
     public ChordMessageInterface getPredecessor() throws RemoteException {
 	    return predecessor;
     }
-    
+    /**
+     * Returns the peer closest to the client
+     */
     public ChordMessageInterface locateSuccessor(long key) throws RemoteException {
 	    if (key == guid)
             throw new IllegalArgumentException("Key must be distinct that  " + guid);
@@ -125,7 +158,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         }
         return successor;
     }
-    
+    /**
+     * Returns the node closest to the client
+     */
     public ChordMessageInterface closestPrecedingNode(long key) throws RemoteException {
         // todo
         if(key != guid) {
@@ -150,7 +185,10 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         }
         return successor;
     }
-    
+    /**
+     * Creates a connection to the ring in the 
+     * distributed file system
+     */
     public void joinRing(String ip, int port)  throws RemoteException {
         try {
             System.out.println("Get Registry to joining ring");
@@ -165,7 +203,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
             successor = this;
         }   
     }
-    
+    /**
+     * Returns the successor that is next in the ring
+     */
     public void findingNextSuccessor()
     {
         int i;
@@ -181,7 +221,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
             }
         }
     }
-    
+    /**
+     * Stabilizes the connection
+     */
     public void stabilize() {
       try {
           if (successor != null)
@@ -202,7 +244,10 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 
       }
     }
-    
+    /**
+     * Sends a message to all of the other peers
+     * in the network
+     */
     public void notify(ChordMessageInterface j) throws RemoteException {
          if (predecessor == null || (predecessor != null
                     && isKeyInOpenInterval(j.getId(), predecessor.getId(), guid)))
@@ -224,7 +269,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
         }
 
     }
-    
+    /**
+     * Stabilizes the fingers
+     */
     public void fixFingers() {
         long id = guid;
         try {
@@ -240,7 +287,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
             e.printStackTrace();
         }
     }
-    
+    /**
+     * Checks if there is a predecessor preceding
+     */
     public void checkPredecessor() { 	
       try {
           if (predecessor != null && !predecessor.isAlive())
@@ -251,16 +300,27 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
           //e.printStackTrace();
       }
     }
+    /**
+     * Getter method for BReduce
+     */
     public Map <Long, String> getBReduce()
     {
         System.out.println("Retrieving the reduced map");
         return  BReduce;
     }
+    /**
+     * Clears the reduce method
+     */
     public void emptyReduce()
     {
         BReduce.clear();
     }
-    //Chord Constructor
+    /**
+     * Constructor for the Chord class
+     * @param port
+     * @param guid
+     * @throws RemoteException
+     */
     public Chord(int port, long guid) throws RemoteException {
         int j;
         set = new TreeSet<Long>();
@@ -293,7 +353,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	       throw e;
         } 
     }
-    
+    /**
+     * Prints out various messages to the console
+     */
     void Print() {   
         int i;
         try {
@@ -316,21 +378,33 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
 	       System.out.println("Cannot retrive id");
         }
     }
-    //MapReduce	
+    /**
+     * Setter method for the set
+     */
     @Override
     public void setWorkingPeer(Long page) throws RemoteException{
 
             set.add(page);
 
     }
+    /**
+     * Completes the peer connection
+     */
   public void completePeer(Long page, Long n) throws RemoteException{
             this.numberOfRecords += n;
             set.remove(page);
     }
+  /**
+   * Returns true if the phase is completed
+   */
     public Boolean isPhaseCompleted() throws IOException{
     
             return set.isEmpty();
     }
+    /**
+     * Part of the reduce phase of MapReduce,
+     * reduces the context
+     */
  public void reduceContext(Long source, MapReduceInterface reducer, ChordMessageInterface context) throws RemoteException
     {
         //TODO
@@ -395,7 +469,9 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
  	}*/
  
  
- 
+ 	/**
+ 	 * Executes the map phase of MapReduce
+ 	 */
     public void mapContext(Long page, MapReduceInterface mapper,
     ChordMessageInterface context) throws RemoteException, IOException, Exception 
     {
@@ -469,7 +545,10 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
      } // ends method
 
     
-
+    /**
+     * Updates the BMap with the results of the 
+     * mapping phase
+     */
 public void emitMap(Long key, String value) throws RemoteException
     { 
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))
@@ -488,7 +567,10 @@ public void emitMap(Long key, String value) throws RemoteException
                 peer.emitMap(key, value);
             }
     }
-    
+    /**
+     * Updates the peers with the results of the
+     * reduce phase
+     */
     public void emitReduce(Long key, String value) throws RemoteException
     {
         if (isKeyInOpenInterval(key, predecessor.getId(), successor.getId()))

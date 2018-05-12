@@ -19,6 +19,12 @@ public class Client
 {
     private int port;
     private DFS distributedFileSystem;
+    
+    /**
+     * Constructor for the client class
+     * @param port
+     * @throws Exception
+     */
     public Client(int port) throws Exception {
             //Use InputStream classes instead 
 
@@ -36,12 +42,20 @@ public class Client
         userInterface.welcomeMessage();
         userInterface.makingSelection();
     }
-
+    /**
+     * Test method to print out a message to the
+     * console
+     */
     public void hello() {
         System.out.println("Hello");
     }
 
-    //Whenever a client is instantiated, it'll run an instance of the client? Create three clients, and join two of them (overheard)
+    /**
+     * Whenever a client is instantiated, it'll run an instance of the client? 
+     * Create three clients, and join two of them (overheard)
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws Exception
     {
         if (args.length < 1 ) {

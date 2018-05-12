@@ -78,18 +78,32 @@ public class DFS implements Serializable {
         Files.createDirectories(Paths.get(guid+"/repository/"));
 
     }
+    /**
+     * Setter method for guid.
+     * @param Guid
+     */
     public void setGuid(long Guid)
     {
         this.guid = Guid;
     }
+    /**
+     * Getter method for guid
+     * @return
+     */
     public long getGUID() {
         return this.guid;
     }
-
+    /**
+     * Getter method for listOfFiles
+     * @return
+     */
     public String getStringOfFiles() {
         return this.listOfFiles;
     }
-
+    /**
+     * Setter method for listOfFiles
+     * @param stringToConcatenate
+     */
     public void setStringOfFiles(String stringToConcatenate) {
         this.listOfFiles.concat(stringToConcatenate);
     }   
@@ -126,7 +140,12 @@ public class DFS implements Serializable {
     }
     
 
-
+    /**
+     * Reads the metadata object from the File System
+     * @return Metadata
+     * @throws Exception
+     * @throws RemoteException
+     */
   public Metadata readMetaData() throws Exception, RemoteException {
     Metadata metadata = null;
       
@@ -174,7 +193,11 @@ public class DFS implements Serializable {
     
       return metadata;
   }
-
+  	/**
+  	 * Writes the local files into the File System
+  	 * @param metadata
+  	 * @throws Exception
+  	 */
     public void writeMetaData(Metadata metadata) throws Exception {
         try  {
             long guid = md5("Metadata"); //which process has that file
@@ -211,7 +234,10 @@ public class DFS implements Serializable {
         }
      
     }
-
+    /**
+     * Getter method for the gson
+     * @return
+     */
     public Gson getGsonObject() {
         return this.gson;
     }
@@ -349,6 +375,11 @@ public class DFS implements Serializable {
             System.out.println(localFile +" doesn't exist");
         }
     }
+    /**
+     * Executes the map reduce process
+     * @param filename
+     * @throws Exception
+     */
     public void runMapReduce(String filename) throws Exception
     {
      
@@ -393,7 +424,13 @@ public class DFS implements Serializable {
 
      
     }
-
+    /**
+     * Creates a page to be added to a file.
+     * @param context
+     * @param DFS
+     * @param name
+     * @throws Exception
+     */
    public void createPage(ChordMessageInterface context, DFS DFS, String name) throws Exception
    {
         String fileName = name + "_Reduce";
@@ -404,6 +441,12 @@ public class DFS implements Serializable {
         context.emptyReduce();
 
    }
+   /**
+    * Appends a page to a file.
+    * @param filename
+    * @param tempReduce
+    * @throws Exception
+    */
    public void append2(String filename, Map <Long, String> tempReduce) throws Exception
     {
         Metadata metadata = readMetaData(); //always read first when creating
