@@ -129,6 +129,7 @@ public class UserInterface {
         System.out.println("\n-----------------------------");
         System.out.print("Selection # (press enter after entering number):\t");
     } //end getCommandLineInterface()
+    
     /**
      * Reads the user input and executes various actions
      * @throws Exception
