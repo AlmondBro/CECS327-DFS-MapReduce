@@ -1,0 +1,43 @@
+\hypertarget{class_mapper}{}\section{Mapper Class Reference}
+\label{class_mapper}\index{Mapper@{Mapper}}
+Inheritance diagram for Mapper\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mapper}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mapper_ad694fe6234676a05e2ee63aec14942c8}{map}} (Long key, String value, \mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} context)  throws I\+O\+Exception 	
+\item 
+void \mbox{\hyperlink{class_mapper_a5c6a53e9cd1419e4b5eded401331c2fd}{reduce}} (Long key, List$<$ String $>$ value, \mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} context)  throws I\+O\+Exception 	
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mapper_ad694fe6234676a05e2ee63aec14942c8}\label{class_mapper_ad694fe6234676a05e2ee63aec14942c8}} 
+\index{Mapper@{Mapper}!map@{map}}
+\index{map@{map}!Mapper@{Mapper}}
+\subsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily void Mapper.\+map (\begin{DoxyParamCaption}\item[{Long}]{key,  }\item[{String}]{value,  }\item[{\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}}}]{context }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Executes the mapping phase of the chord class. 
+
+Implements \mbox{\hyperlink{interface_map_reduce_interface}{Map\+Reduce\+Interface}}.
+
+\mbox{\Hypertarget{class_mapper_a5c6a53e9cd1419e4b5eded401331c2fd}\label{class_mapper_a5c6a53e9cd1419e4b5eded401331c2fd}} 
+\index{Mapper@{Mapper}!reduce@{reduce}}
+\index{reduce@{reduce}!Mapper@{Mapper}}
+\subsubsection{\texorpdfstring{reduce()}{reduce()}}
+{\footnotesize\ttfamily void Mapper.\+reduce (\begin{DoxyParamCaption}\item[{Long}]{key,  }\item[{List$<$ String $>$}]{value,  }\item[{\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}}}]{context }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Executes the reduce phase of the chord class 
+
+Implements \mbox{\hyperlink{interface_map_reduce_interface}{Map\+Reduce\+Interface}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Mapper.\+java\end{DoxyCompactItemize}

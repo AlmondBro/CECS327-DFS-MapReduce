@@ -1,0 +1,73 @@
+\hypertarget{interface_chord_message_interface}{}\section{Chord\+Message\+Interface Interface Reference}
+\label{interface_chord_message_interface}\index{Chord\+Message\+Interface@{Chord\+Message\+Interface}}
+Inheritance diagram for Chord\+Message\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{interface_chord_message_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_ab07c08ba6088ef880eaf4ebae8281c51}\label{interface_chord_message_interface_ab07c08ba6088ef880eaf4ebae8281c51}} 
+\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} {\bfseries get\+Predecessor} ()  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_ab7df61ab2cfee0f39206014d7a42b063}\label{interface_chord_message_interface_ab7df61ab2cfee0f39206014d7a42b063}} 
+\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} {\bfseries locate\+Successor} (long key)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a1d54a4ccd64382455af7dccfd0d6f95f}\label{interface_chord_message_interface_a1d54a4ccd64382455af7dccfd0d6f95f}} 
+\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} {\bfseries closest\+Preceding\+Node} (long key)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_abc5a9483416a6b8ae7330b324869e236}\label{interface_chord_message_interface_abc5a9483416a6b8ae7330b324869e236}} 
+void {\bfseries join\+Ring} (String Ip, int port)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_abbb77f94541073d79284d35f970e0eb4}\label{interface_chord_message_interface_abbb77f94541073d79284d35f970e0eb4}} 
+void {\bfseries notify} (\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} j)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a8165b3fb53905e657c70b66223197561}\label{interface_chord_message_interface_a8165b3fb53905e657c70b66223197561}} 
+boolean {\bfseries is\+Alive} ()  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_aaa28e7b91333c557955404ee8d26d65a}\label{interface_chord_message_interface_aaa28e7b91333c557955404ee8d26d65a}} 
+long {\bfseries get\+Id} ()  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_af5cff344c9615be675532d192793e9fd}\label{interface_chord_message_interface_af5cff344c9615be675532d192793e9fd}} 
+void {\bfseries put} (long guid\+Object, \mbox{\hyperlink{class_file_stream}{File\+Stream}} input\+Stream)  throws I\+O\+Exception, Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a7e5c3d20f8555538899989d1984ce326}\label{interface_chord_message_interface_a7e5c3d20f8555538899989d1984ce326}} 
+\mbox{\hyperlink{class_file_stream}{File\+Stream}} {\bfseries get} (long guid\+Object)  throws I\+O\+Exception, Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a2bd41258d7f62c5959907e4d3170fc70}\label{interface_chord_message_interface_a2bd41258d7f62c5959907e4d3170fc70}} 
+void {\bfseries delete} (long guid\+Object)  throws I\+O\+Exception, Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_ad3133122275f2af3985da857a55ccffc}\label{interface_chord_message_interface_ad3133122275f2af3985da857a55ccffc}} 
+Map$<$ Long, String $>$ {\bfseries get\+B\+Reduce} ()  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_ab6c24846cee4bedc76ea464b0a115223}\label{interface_chord_message_interface_ab6c24846cee4bedc76ea464b0a115223}} 
+void {\bfseries set\+Working\+Peer} (Long page)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_ad6e76a8f771acad5a559c991b686fbbc}\label{interface_chord_message_interface_ad6e76a8f771acad5a559c991b686fbbc}} 
+void {\bfseries complete\+Peer} (Long page, Long n)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a90bc99e8353719eb8fc11083c5b77220}\label{interface_chord_message_interface_a90bc99e8353719eb8fc11083c5b77220}} 
+Boolean {\bfseries is\+Phase\+Completed} ()  throws I\+O\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_aa04d12dfb770bbc0d0bd63888c20c7cd}\label{interface_chord_message_interface_aa04d12dfb770bbc0d0bd63888c20c7cd}} 
+void {\bfseries empty\+Reduce} ()  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a21ccb7a25ff36291b3fbdeba29234cd3}\label{interface_chord_message_interface_a21ccb7a25ff36291b3fbdeba29234cd3}} 
+void {\bfseries reduce\+Context} (Long source, \mbox{\hyperlink{interface_map_reduce_interface}{Map\+Reduce\+Interface}} reducer, \mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} context)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a6c0446393624049bded3625f5f41499d}\label{interface_chord_message_interface_a6c0446393624049bded3625f5f41499d}} 
+void {\bfseries map\+Context} (Long page, \mbox{\hyperlink{interface_map_reduce_interface}{Map\+Reduce\+Interface}} mapper, \mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} context)  throws Remote\+Exception, I\+O\+Exception,\+Exception 
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_aa6322b11ad33217d05477ed2cef560bb}\label{interface_chord_message_interface_aa6322b11ad33217d05477ed2cef560bb}} 
+void {\bfseries emit\+Map} (Long key, String value)  throws Remote\+Exception
+\item 
+\mbox{\Hypertarget{interface_chord_message_interface_a4c2d3d7293780603d3dc310bba64e631}\label{interface_chord_message_interface_a4c2d3d7293780603d3dc310bba64e631}} 
+void {\bfseries emit\+Reduce} (Long page, String value)  throws Remote\+Exception
+\end{DoxyCompactItemize}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Chord\+Message\+Interface.\+java\end{DoxyCompactItemize}
