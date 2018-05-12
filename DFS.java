@@ -409,17 +409,25 @@ public class DFS implements Serializable {
         Metadata metadata = readMetaData(); //always read first when creating
 
         // do the steps I listed in the comments
-        File fake = new File("eric/Documents/CECS327-DFS-MapReduce/fake.txt"); //fake used to just store 
-        fake.createNewFile();   
-        PrintWriter writer = new PrintWriter(fake);                                                              //the contents then GUID will be generated MD5 from it
+        File fake = new File("fake.txt"); //fake used to just store 
+        if(fake == null)
+        {
+            System.out.println("Creating a file");
+            fake.createNewFile();
+        }
+ 
+        System.out.println("Fake file created");
+        PrintWriter writer = new PrintWriter(fake.getAbsolutePath());                                                              //the contents then GUID will be generated MD5 from it
         for(Long key : tempReduce.keySet())
         {
             writer.println(key + "; " + tempReduce.get(key));
-        }                                                            //create another with that GUID name and add it to metadata
+        } 
+         guid = md5(fake.getAbsolutePath());
+         File localFile = new File(guid + ".txt");
          Page page = new Page(0, guid, 0);
          metadata.getFile(filename).addPage(page);
          ChordMessageInterface peer = chord.locateSuccessor(guid);
-//         peer.put(guid, new FileStream(localFile));
+         peer.put(guid, new FileStream(fake.getAbsolutePath()));
         writeMetaData(metadata);
 
 
