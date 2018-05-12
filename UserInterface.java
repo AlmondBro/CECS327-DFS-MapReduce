@@ -76,18 +76,21 @@ public class UserInterface {
     } //end 
 
     public void getCommandLineInterface() {
-        System.out.println("\nPlease make a selection");
-        System.out.println("\nTo join the DFS, enter 0:\t");
-        System.out.println("To ls (list the files) enter 1:\t");
-        System.out.println("To touch (create a file) enter 2:\t");
-        System.out.println("To delete enter 3:\t");
-        System.out.println("To read enter 4:\t");
-        System.out.println("To tail enter 5:\t");
-        System.out.println("To append enter 6:\t");
-        System.out.println("To move enter 7:\t");
-        System.out.println("To head, enter 8:\t");
-        System.out.println("Run mapReduce 9:");
-        System.out.println("To quit, enter 10:\t");
+        System.out.println("\n-----------------------------");
+        System.out.println("\nPlease make a selection.");
+        System.out.println("\n#0:\tTo join the DFS, enter 0:\t");
+        System.out.println("#1:\t To ls (list the files), enter 1:\t");
+        System.out.println("#2:\t To touch (create a file), enter 2:\t");
+        System.out.println("#3:\t To delete a file, enter 3:\t");
+        System.out.println("#4:\t To read (a page from a file), enter 4:\t");
+        System.out.println("#5:\t To tail (read last page of a file), enter 5:\t");
+        System.out.println("#6:\t To append (add a page to a file), enter 6:\t");
+        System.out.println("#7:\t To move enter 7:\t");
+        System.out.println("#8:\t To head (read first page of a file), enter 8:\t");
+        System.out.println("#9:\t Run mapReduce on a file with page(s) 9:");
+        System.out.println("#10:\t To quit, enter 10:\t");
+        System.out.println("\n-----------------------------");
+        System.out.print("Selection # (press enter after entering number):\t");
     } //end getCommandLineInterface()
 
     public void makingSelection() throws Exception {
@@ -112,14 +115,13 @@ public class UserInterface {
                     this.connectToDFS();
                 case 1:
                     String fileList = getDFS().ls();
-                    System.out.println("The list of files are "+ fileList);
+                    System.out.println("The list of files are:\t"+ fileList);
                     //user_input.close();
                     break;
                     
                 case 2:
                     System.out.println("Please enter the file name:\t");
                     fileName = user_input.nextLine();
-                    System.out.println("You entered the file name:" + fileName);
                     this.getDFS().touch(fileName);
                     //user_input.close();
                     break;
@@ -175,10 +177,10 @@ public class UserInterface {
                     break;
 
                 case 6:
-                    System.out.println("Please enter file name");
+                    System.out.println("Please enter the file name you wish to append a page to:\t");
                     fileName =  user_input.nextLine();
-                    System.out.println("You enter the name:" + fileName);
-                    System.out.println("You enter the local file path");
+                    System.out.println("\nEnter the name of your metadata file:" + fileName);
+                    System.out.println("Enter the relative file path of the physical file you wish to append as a page to your selected metadata file:\t");
                     filePath = user_input.nextLine();
                     System.out.println("You entered the local file path:"+ filePath);
                     this.getDFS().append(fileName, filePath );
@@ -226,10 +228,8 @@ public class UserInterface {
 
             if (flag == false) {
                 return;
-            }
-            
+            } //end if-statement 
         } //ends while (implement way to quit while)
-  
     } //end makingSelection() method
   
 } //end UserInterface() class

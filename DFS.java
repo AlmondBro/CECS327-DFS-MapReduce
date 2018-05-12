@@ -183,14 +183,13 @@ public class DFS implements Serializable {
            //Following block is to write to localFile
           
             String tempFile = process.getId() + "/repository/"+guid;
-            System.out.println("Here is the file path: " + tempFile);
             File tempFile_file  = new File(tempFile);
 
            //felt we need update the existing local Metadata but writer will override 
            //the existing the Metadata with just he new file 
            if(tempFile_file.exists())
            {
-             System.out.println("File: exist");
+             System.out.println("\nFile: exist");
              FileWriter writer = new FileWriter(tempFile_file);
              gson.toJson(metadata, writer);
              writer.close();
@@ -203,18 +202,17 @@ public class DFS implements Serializable {
            //chords put doesn't seem to put back into the cloud? how to fix
         
             process.put(guid, new FileStream(tempFile));
-            System.out.println("File was succesfully posted to FileSystem.");
+            System.out.println("\n\tFile was succesfully written to FileSystem Metadata.");
         }  catch (FileNotFoundException e) {
-            System.out.println("File: Does not exist (DFS.writeMedata");
-            e.printStackTrace();;
-
+            System.out.println("File: Does not exist (DFS.writeMedata())\n");
+            e.printStackTrace();
         }
-     
     }
 
     public Gson getGsonObject() {
         return this.gson;
     }
+    
      /**
      * Creates a new file with the inputted name
      * into the metadata object.

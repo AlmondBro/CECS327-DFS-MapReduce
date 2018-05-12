@@ -17,15 +17,8 @@ import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.IOException;;
 public class Metadata {
-
-	//private String name;
 	private ArrayList<MetaFile> metafiles; 
 	
-/*	public Metadata(String name, ArrayList<MetaFile> metafiles) {
-		this.name = name;
-		this.metafiles = metafiles;
-	}*/
-
 	public Metadata() {
 		metafiles = new ArrayList<MetaFile>();	
 	}
@@ -41,15 +34,16 @@ public class Metadata {
 				
 		}
 	}
-	public String getFileNames()
-	{
-		String fileNames = "";
-		for(int i = 0; i < metafiles.size(); i++)
-		{
-			fileNames = fileNames + metafiles.get(i).getName();
-		}
+	public String getFileNames() {
+		String fileNames = "\n\n\tNo files listed since there aren't any.";
+		//if (metafiles.size() > 0) {
+			for (int i = 0; i < metafiles.size(); i++) {
+				fileNames = "";
+				fileNames = "\n\t" + "#" + (i+1) + ":\t" + fileNames + metafiles.get(i).getName();
+			} //end for-loop
+		//} //end if-statement
 		return fileNames;
-	}
+	} //end getFileNames() 
 	
 	public void createFile(String fileName) throws FileNotFoundException, IOException {
 		

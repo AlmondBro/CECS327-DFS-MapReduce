@@ -1,9 +1,10 @@
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 
 
-public class Mapper implements MapReduceInterface {
+public class Mapper implements MapReduceInterface, Serializable {
 	
 	public void map(Long key, String value, ChordMessageInterface context) throws IOException
 	{
