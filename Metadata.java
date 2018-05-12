@@ -33,13 +33,16 @@ public class Metadata {
 	 * @return fileNames
 	 */
 	public String getFileNames() {
-		String fileNames = "\n\n\tNo files listed since there aren't any.";
-		//if (metafiles.size() > 0) {
-			for (int i = 0; i < metafiles.size(); i++) {
-				fileNames = "";
-				fileNames += "\n\t" + "#" + (i+1) + ":\t" + fileNames + metafiles.get(i).getName();
-			} //end for-loop
-		//} //end if-statement
+		String fileNames = "";
+		
+		for (int i = 0; i < metafiles.size(); i++) {
+			fileNames += "\n\t" + "#" + (i+1) + ":\t" + metafiles.get(i).getName();
+		} //end for-loop
+
+		if (fileNames == "" || fileNames == null) {
+			fileNames = "\n\tNo files have been created.";
+		} 
+	
 		return fileNames;
 	} //end getFileNames() 
 	

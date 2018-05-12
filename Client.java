@@ -65,13 +65,24 @@ public class Client {
             javac -cp gson-2.8.2.jar Client.java Chord.java ChordMessageInterface.java DFS.java Metadata.java MetaFile.java Page.java UserInterface.java FileStream.java Mapper.java MapReduceInterface.java; java -classpath ".:gson-2.8.2.jar" Client
         */
         try {
-            Client client = new Client(randomPort);
-            
-            client.welcomeMessage();
-            client.getUserInterface();
+            if (args.length >= 1 ) { 
+                Client client = new Client(Integer.parseInt(args[0]));
+                
+                client.welcomeMessage();
+                client.getUserInterface();
 
-            System.exit(0);
-            
+                System.exit(0);
+            } //end if-statement
+
+            else {
+                Client client = new Client(randomPort);
+                
+                client.welcomeMessage();
+                client.getUserInterface();
+
+                System.exit(0);
+            } //end else-statement
+
         } catch(IllegalArgumentException e) {
             System.out.println("\nPlease supply a port parameter: <port> upon next compilation and run. Defaulting to port #:\t" + randomPort);
             Client client = new Client(randomPort);
