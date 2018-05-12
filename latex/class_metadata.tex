@@ -1,0 +1,135 @@
+\hypertarget{class_metadata}{}\section{Metadata Class Reference}
+\label{class_metadata}\index{Metadata@{Metadata}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_metadata_a05084417d8815ec44e3d70126f31be00}{Metadata}} ()
+\item 
+void \mbox{\hyperlink{class_metadata_afba93e3d4b961ddcd67b5f2530a9e20d}{change\+Name}} (String old\+Name, String new\+Name)
+\item 
+String \mbox{\hyperlink{class_metadata_a47932985a21ca5fe3e99726b50c36658}{get\+File\+Names}} ()
+\item 
+void \mbox{\hyperlink{class_metadata_a67800e2f003cabb15744b86bec38a783}{create\+File}} (String file\+Name)  throws File\+Not\+Found\+Exception, I\+O\+Exception 
+\item 
+\mbox{\hyperlink{class_meta_file}{Meta\+File}} \mbox{\hyperlink{class_metadata_ae29cb4e7e73fdda5a3649e085863d481}{get\+File}} (String file\+Name)  throws Exception 
+\item 
+void \mbox{\hyperlink{class_metadata_a84c1111ef377e908c90bf9afb6006e20}{delete}} (String file\+Name)
+\item 
+void \mbox{\hyperlink{class_metadata_a84c55073051d681405262f85feed7286}{append}} (String name, String local\+File)
+\item 
+void \mbox{\hyperlink{class_metadata_ad553fd3bd0610354c55d603c64886533}{to\+Json}} ()
+\item 
+void \mbox{\hyperlink{class_metadata_ab22a1ff2f8390792d6c520be50dd3906}{readfrom\+J\+S\+ON}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_metadata_a05084417d8815ec44e3d70126f31be00}\label{class_metadata_a05084417d8815ec44e3d70126f31be00}} 
+\index{Metadata@{Metadata}!Metadata@{Metadata}}
+\index{Metadata@{Metadata}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{Metadata()}{Metadata()}}
+{\footnotesize\ttfamily Metadata.\+Metadata (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for the \mbox{\hyperlink{class_metadata}{Metadata}} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_metadata_a84c55073051d681405262f85feed7286}\label{class_metadata_a84c55073051d681405262f85feed7286}} 
+\index{Metadata@{Metadata}!append@{append}}
+\index{append@{append}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily void Metadata.\+append (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{local\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Appends a file to the metadata 
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em local\+File} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_metadata_afba93e3d4b961ddcd67b5f2530a9e20d}\label{class_metadata_afba93e3d4b961ddcd67b5f2530a9e20d}} 
+\index{Metadata@{Metadata}!change\+Name@{change\+Name}}
+\index{change\+Name@{change\+Name}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{change\+Name()}{changeName()}}
+{\footnotesize\ttfamily void Metadata.\+change\+Name (\begin{DoxyParamCaption}\item[{String}]{old\+Name,  }\item[{String}]{new\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the metafile\textquotesingle{}s name to a new one 
+\begin{DoxyParams}{Parameters}
+{\em old\+Name} & \\
+\hline
+{\em new\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_metadata_a67800e2f003cabb15744b86bec38a783}\label{class_metadata_a67800e2f003cabb15744b86bec38a783}} 
+\index{Metadata@{Metadata}!create\+File@{create\+File}}
+\index{create\+File@{create\+File}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{create\+File()}{createFile()}}
+{\footnotesize\ttfamily void Metadata.\+create\+File (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a file and adds it to the metafile 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & \\
+\hline
+{\em I\+O\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_metadata_a84c1111ef377e908c90bf9afb6006e20}\label{class_metadata_a84c1111ef377e908c90bf9afb6006e20}} 
+\index{Metadata@{Metadata}!delete@{delete}}
+\index{delete@{delete}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily void Metadata.\+delete (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Deletes a file from metadata 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_metadata_ae29cb4e7e73fdda5a3649e085863d481}\label{class_metadata_ae29cb4e7e73fdda5a3649e085863d481}} 
+\index{Metadata@{Metadata}!get\+File@{get\+File}}
+\index{get\+File@{get\+File}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{get\+File()}{getFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_meta_file}{Meta\+File}} Metadata.\+get\+File (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a specified file 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_metadata_a47932985a21ca5fe3e99726b50c36658}\label{class_metadata_a47932985a21ca5fe3e99726b50c36658}} 
+\index{Metadata@{Metadata}!get\+File\+Names@{get\+File\+Names}}
+\index{get\+File\+Names@{get\+File\+Names}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{get\+File\+Names()}{getFileNames()}}
+{\footnotesize\ttfamily String Metadata.\+get\+File\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a list of all of the file\textquotesingle{}s names \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_metadata_ab22a1ff2f8390792d6c520be50dd3906}\label{class_metadata_ab22a1ff2f8390792d6c520be50dd3906}} 
+\index{Metadata@{Metadata}!readfrom\+J\+S\+ON@{readfrom\+J\+S\+ON}}
+\index{readfrom\+J\+S\+ON@{readfrom\+J\+S\+ON}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{readfrom\+J\+S\+O\+N()}{readfromJSON()}}
+{\footnotesize\ttfamily void Metadata.\+readfrom\+J\+S\+ON (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+converts a json to a string \mbox{\Hypertarget{class_metadata_ad553fd3bd0610354c55d603c64886533}\label{class_metadata_ad553fd3bd0610354c55d603c64886533}} 
+\index{Metadata@{Metadata}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Metadata@{Metadata}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily void Metadata.\+to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Converts a string to json 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Metadata.\+java\end{DoxyCompactItemize}

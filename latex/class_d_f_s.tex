@@ -1,0 +1,372 @@
+\hypertarget{class_d_f_s}{}\section{D\+FS Class Reference}
+\label{class_d_f_s}\index{D\+FS@{D\+FS}}
+Inheritance diagram for D\+FS\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_d_f_s}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_f_s_ad863806217afcce82e64f5d7d4c124ad}{D\+FS}} (int port)  throws Exception     
+\item 
+void \mbox{\hyperlink{class_d_f_s_a2b7fc8baa8a13aef60da87bde16eb0b3}{set\+Guid}} (long Guid)
+\item 
+long \mbox{\hyperlink{class_d_f_s_a95f46c984fa3cdd15c03e60c43e54eac}{get\+G\+U\+ID}} ()
+\item 
+String \mbox{\hyperlink{class_d_f_s_a7024a402890d96dc2cbbc05645a869c8}{get\+String\+Of\+Files}} ()
+\item 
+void \mbox{\hyperlink{class_d_f_s_a0b41c089ddb9531824556a982e3548eb}{set\+String\+Of\+Files}} (String string\+To\+Concatenate)
+\item 
+void \mbox{\hyperlink{class_d_f_s_a21222612b26b908c380b73e1e5912a03}{join}} (String ip, int port)  throws Exception 
+\item 
+\mbox{\hyperlink{class_metadata}{Metadata}} \mbox{\hyperlink{class_d_f_s_a05df5c4a73e10460c29b14b46642eb8a}{read\+Meta\+Data}} ()  throws Exception, Remote\+Exception 
+\item 
+void \mbox{\hyperlink{class_d_f_s_a2fceb11bdd1e270a4aabcbf9c0dd4339}{write\+Meta\+Data}} (\mbox{\hyperlink{class_metadata}{Metadata}} metadata)  throws Exception 
+\item 
+Gson \mbox{\hyperlink{class_d_f_s_abdcb090af2467b8a2cfe9ab55b3d9cea}{get\+Gson\+Object}} ()
+\item 
+void \mbox{\hyperlink{class_d_f_s_ac44bf8288f4423fc87370b97f95f07c1}{touch}} (String file\+Name)  throws Exception 
+\item 
+String \mbox{\hyperlink{class_d_f_s_a753e09aab8e500f333585f1a6ee865e1}{ls}} ()  throws Exception 
+\item 
+void \mbox{\hyperlink{class_d_f_s_a7b0d44e11c6176a71d040919b6fe1d96}{mv}} (String old\+Name, String new\+Name)  throws Exception 
+\item 
+void \mbox{\hyperlink{class_d_f_s_afa4df78a9af4f942cd878afc329b98e1}{delete}} (String file\+Name)  throws Exception 
+\item 
+\mbox{\hyperlink{class_file_stream}{File\+Stream}} \mbox{\hyperlink{class_d_f_s_a2fe4f98b6e0dede1c97d67bbb5c77df1}{read}} (String file\+Name, int page\+Number)  throws Exception 
+\item 
+\mbox{\hyperlink{class_file_stream}{File\+Stream}} \mbox{\hyperlink{class_d_f_s_a86ed64f3b14dc0c0d878dbcb1ca1cfa9}{tail}} (String file\+Name)  throws Exception     
+\item 
+\mbox{\hyperlink{class_file_stream}{File\+Stream}} \mbox{\hyperlink{class_d_f_s_a73915159a4290c3832635b6c4338ff7e}{head}} (String file\+Name)  throws Exception     
+\item 
+void \mbox{\hyperlink{class_d_f_s_ab2e55db638f5d15efabd544d9a3c4a5f}{append}} (String filename, String local\+File)  throws Exception     
+\item 
+void \mbox{\hyperlink{class_d_f_s_a51479394a5d22157cc1ee1244d294d00}{run\+Map\+Reduce}} (String filename)  throws Exception     
+\item 
+void \mbox{\hyperlink{class_d_f_s_a8de3017e98033a0a43c9832fcc15f797}{create\+Page}} (\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}} context, \mbox{\hyperlink{class_d_f_s}{D\+FS}} \mbox{\hyperlink{class_d_f_s}{D\+FS}}, String name)  throws Exception    
+\item 
+void \mbox{\hyperlink{class_d_f_s_a6144b8f9a96198128d178badde49d8dc}{append2}} (String filename, Map$<$ Long, String $>$ temp\+Reduce)  throws Exception     
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_d_f_s_ad863806217afcce82e64f5d7d4c124ad}\label{class_d_f_s_ad863806217afcce82e64f5d7d4c124ad}} 
+\index{D\+FS@{D\+FS}!D\+FS@{D\+FS}}
+\index{D\+FS@{D\+FS}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{D\+F\+S()}{DFS()}}
+{\footnotesize\ttfamily D\+F\+S.\+D\+FS (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for the \mbox{\hyperlink{class_d_f_s}{D\+FS}} class. Takes an integer as the port number. 
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_d_f_s_ab2e55db638f5d15efabd544d9a3c4a5f}\label{class_d_f_s_ab2e55db638f5d15efabd544d9a3c4a5f}} 
+\index{D\+FS@{D\+FS}!append@{append}}
+\index{append@{append}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily void D\+F\+S.\+append (\begin{DoxyParamCaption}\item[{String}]{filename,  }\item[{String}]{local\+File }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a new file to the end of the array of files in the metadata. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em filepath} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a6144b8f9a96198128d178badde49d8dc}\label{class_d_f_s_a6144b8f9a96198128d178badde49d8dc}} 
+\index{D\+FS@{D\+FS}!append2@{append2}}
+\index{append2@{append2}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{append2()}{append2()}}
+{\footnotesize\ttfamily void D\+F\+S.\+append2 (\begin{DoxyParamCaption}\item[{String}]{filename,  }\item[{Map$<$ Long, String $>$}]{temp\+Reduce }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Appends a page to a file. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em temp\+Reduce} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a8de3017e98033a0a43c9832fcc15f797}\label{class_d_f_s_a8de3017e98033a0a43c9832fcc15f797}} 
+\index{D\+FS@{D\+FS}!create\+Page@{create\+Page}}
+\index{create\+Page@{create\+Page}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{create\+Page()}{createPage()}}
+{\footnotesize\ttfamily void D\+F\+S.\+create\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_chord_message_interface}{Chord\+Message\+Interface}}}]{context,  }\item[{\mbox{\hyperlink{class_d_f_s}{D\+FS}}}]{D\+FS,  }\item[{String}]{name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a page to be added to a file. 
+\begin{DoxyParams}{Parameters}
+{\em context} & \\
+\hline
+{\em \mbox{\hyperlink{class_d_f_s}{D\+FS}}} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_afa4df78a9af4f942cd878afc329b98e1}\label{class_d_f_s_afa4df78a9af4f942cd878afc329b98e1}} 
+\index{D\+FS@{D\+FS}!delete@{delete}}
+\index{delete@{delete}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily void D\+F\+S.\+delete (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Deletes a file and all of its pages from the metadata. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_abdcb090af2467b8a2cfe9ab55b3d9cea}\label{class_d_f_s_abdcb090af2467b8a2cfe9ab55b3d9cea}} 
+\index{D\+FS@{D\+FS}!get\+Gson\+Object@{get\+Gson\+Object}}
+\index{get\+Gson\+Object@{get\+Gson\+Object}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{get\+Gson\+Object()}{getGsonObject()}}
+{\footnotesize\ttfamily Gson D\+F\+S.\+get\+Gson\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter method for the gson \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_d_f_s_a95f46c984fa3cdd15c03e60c43e54eac}\label{class_d_f_s_a95f46c984fa3cdd15c03e60c43e54eac}} 
+\index{D\+FS@{D\+FS}!get\+G\+U\+ID@{get\+G\+U\+ID}}
+\index{get\+G\+U\+ID@{get\+G\+U\+ID}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{get\+G\+U\+I\+D()}{getGUID()}}
+{\footnotesize\ttfamily long D\+F\+S.\+get\+G\+U\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter method for guid \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_d_f_s_a7024a402890d96dc2cbbc05645a869c8}\label{class_d_f_s_a7024a402890d96dc2cbbc05645a869c8}} 
+\index{D\+FS@{D\+FS}!get\+String\+Of\+Files@{get\+String\+Of\+Files}}
+\index{get\+String\+Of\+Files@{get\+String\+Of\+Files}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{get\+String\+Of\+Files()}{getStringOfFiles()}}
+{\footnotesize\ttfamily String D\+F\+S.\+get\+String\+Of\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter method for list\+Of\+Files \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_d_f_s_a73915159a4290c3832635b6c4338ff7e}\label{class_d_f_s_a73915159a4290c3832635b6c4338ff7e}} 
+\index{D\+FS@{D\+FS}!head@{head}}
+\index{head@{head}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{head()}{head()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_stream}{File\+Stream}} D\+F\+S.\+head (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the first page of the file in the metadata. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a21222612b26b908c380b73e1e5912a03}\label{class_d_f_s_a21222612b26b908c380b73e1e5912a03}} 
+\index{D\+FS@{D\+FS}!join@{join}}
+\index{join@{join}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily void D\+F\+S.\+join (\begin{DoxyParamCaption}\item[{String}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Method to join a process to a \mbox{\hyperlink{class_chord}{Chord}} network 
+\begin{DoxyParams}{Parameters}
+{\em ip} & IP address of the machine\textquotesingle{}s network you wish to join \\
+\hline
+{\em port} & of the network \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a753e09aab8e500f333585f1a6ee865e1}\label{class_d_f_s_a753e09aab8e500f333585f1a6ee865e1}} 
+\index{D\+FS@{D\+FS}!ls@{ls}}
+\index{ls@{ls}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{ls()}{ls()}}
+{\footnotesize\ttfamily String D\+F\+S.\+ls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a list of the files in the metadata in the form of a string. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a7b0d44e11c6176a71d040919b6fe1d96}\label{class_d_f_s_a7b0d44e11c6176a71d040919b6fe1d96}} 
+\index{D\+FS@{D\+FS}!mv@{mv}}
+\index{mv@{mv}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{mv()}{mv()}}
+{\footnotesize\ttfamily void D\+F\+S.\+mv (\begin{DoxyParamCaption}\item[{String}]{old\+Name,  }\item[{String}]{new\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Renames the metadata object. 
+\begin{DoxyParams}{Parameters}
+{\em old\+Name} & \\
+\hline
+{\em new\+Name} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a2fe4f98b6e0dede1c97d67bbb5c77df1}\label{class_d_f_s_a2fe4f98b6e0dede1c97d67bbb5c77df1}} 
+\index{D\+FS@{D\+FS}!read@{read}}
+\index{read@{read}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_stream}{File\+Stream}} D\+F\+S.\+read (\begin{DoxyParamCaption}\item[{String}]{file\+Name,  }\item[{int}]{page\+Number }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a page from a file from the metadata in the form of a \mbox{\hyperlink{class_file_stream}{File\+Stream}}. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+{\em page\+Number} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a05df5c4a73e10460c29b14b46642eb8a}\label{class_d_f_s_a05df5c4a73e10460c29b14b46642eb8a}} 
+\index{D\+FS@{D\+FS}!read\+Meta\+Data@{read\+Meta\+Data}}
+\index{read\+Meta\+Data@{read\+Meta\+Data}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{read\+Meta\+Data()}{readMetaData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_metadata}{Metadata}} D\+F\+S.\+read\+Meta\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception, Remote\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reads the metadata object from the File System \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_metadata}{Metadata}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+{\em Remote\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a51479394a5d22157cc1ee1244d294d00}\label{class_d_f_s_a51479394a5d22157cc1ee1244d294d00}} 
+\index{D\+FS@{D\+FS}!run\+Map\+Reduce@{run\+Map\+Reduce}}
+\index{run\+Map\+Reduce@{run\+Map\+Reduce}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{run\+Map\+Reduce()}{runMapReduce()}}
+{\footnotesize\ttfamily void D\+F\+S.\+run\+Map\+Reduce (\begin{DoxyParamCaption}\item[{String}]{filename }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Executes the map reduce process 
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a2b7fc8baa8a13aef60da87bde16eb0b3}\label{class_d_f_s_a2b7fc8baa8a13aef60da87bde16eb0b3}} 
+\index{D\+FS@{D\+FS}!set\+Guid@{set\+Guid}}
+\index{set\+Guid@{set\+Guid}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{set\+Guid()}{setGuid()}}
+{\footnotesize\ttfamily void D\+F\+S.\+set\+Guid (\begin{DoxyParamCaption}\item[{long}]{Guid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter method for guid. 
+\begin{DoxyParams}{Parameters}
+{\em Guid} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_d_f_s_a0b41c089ddb9531824556a982e3548eb}\label{class_d_f_s_a0b41c089ddb9531824556a982e3548eb}} 
+\index{D\+FS@{D\+FS}!set\+String\+Of\+Files@{set\+String\+Of\+Files}}
+\index{set\+String\+Of\+Files@{set\+String\+Of\+Files}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{set\+String\+Of\+Files()}{setStringOfFiles()}}
+{\footnotesize\ttfamily void D\+F\+S.\+set\+String\+Of\+Files (\begin{DoxyParamCaption}\item[{String}]{string\+To\+Concatenate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter method for list\+Of\+Files 
+\begin{DoxyParams}{Parameters}
+{\em string\+To\+Concatenate} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_d_f_s_a86ed64f3b14dc0c0d878dbcb1ca1cfa9}\label{class_d_f_s_a86ed64f3b14dc0c0d878dbcb1ca1cfa9}} 
+\index{D\+FS@{D\+FS}!tail@{tail}}
+\index{tail@{tail}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{tail()}{tail()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_stream}{File\+Stream}} D\+F\+S.\+tail (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the last page of a file in the metadata in the form of a Filestream. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filestream 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_ac44bf8288f4423fc87370b97f95f07c1}\label{class_d_f_s_ac44bf8288f4423fc87370b97f95f07c1}} 
+\index{D\+FS@{D\+FS}!touch@{touch}}
+\index{touch@{touch}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{touch()}{touch()}}
+{\footnotesize\ttfamily void D\+F\+S.\+touch (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a new file with the inputted name into the metadata object. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_d_f_s_a2fceb11bdd1e270a4aabcbf9c0dd4339}\label{class_d_f_s_a2fceb11bdd1e270a4aabcbf9c0dd4339}} 
+\index{D\+FS@{D\+FS}!write\+Meta\+Data@{write\+Meta\+Data}}
+\index{write\+Meta\+Data@{write\+Meta\+Data}!D\+FS@{D\+FS}}
+\subsubsection{\texorpdfstring{write\+Meta\+Data()}{writeMetaData()}}
+{\footnotesize\ttfamily void D\+F\+S.\+write\+Meta\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_metadata}{Metadata}}}]{metadata }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Writes the local files into the File System 
+\begin{DoxyParams}{Parameters}
+{\em metadata} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+F\+S.\+java\end{DoxyCompactItemize}
