@@ -27,6 +27,11 @@ public class Client {
     private DFS distributedFileSystem;
     private UserInterface userInterface;
 
+    /**
+     * Constructor for the client class
+     * @param port the port number of the Distributed File System you wish to join.
+     * @throws Exception
+     */
     public Client(int port) throws Exception {
         distributedFileSystem = new DFS(port);
         userInterface = new UserInterface(distributedFileSystem);
@@ -40,6 +45,12 @@ public class Client {
         userInterface.makingSelection();
     }
 
+    /**
+     * Whenever a client is instantiated, it'll run an instance of the client? 
+     * Create three clients, and join two of them (overheard)
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws Exception {
         if (args.length < 1 ) {
             throw new IllegalArgumentException("Please supply a port parameter: <port>");
@@ -53,5 +64,5 @@ public class Client {
         client.welcomeMessage();
         client.getUserInterface();
         System.exit(0); 
-     } 
-}
+     }  //end main() method
+} //end Client class
