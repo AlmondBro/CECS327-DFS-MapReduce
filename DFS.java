@@ -2,6 +2,7 @@ import java.rmi.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+
 import java.nio.file.*;
 import java.math.BigInteger;
 import java.security.*;
@@ -56,7 +57,7 @@ public class DFS implements Serializable {
     private String json;
     private FileStream filestream;
     private String listOfFiles;
-
+    private Map <Long,String>  tempReduce ;
     private File metafile_physicalFile;
 
     /**
@@ -359,7 +360,7 @@ public class DFS implements Serializable {
         int size = metadata.getFile(filename).getNumOfPage();
         System.out.println("Number of pages in file:" + size);
         ChordMessageInterface peer = null;
-        
+    
         for(int i = 0; i < size; i++)
         {
             Page page = metadata.getFile(filename).getPage(i);
@@ -398,6 +399,29 @@ public class DFS implements Serializable {
         String fileName = name + "_Reduce";
         DFS.touch(fileName);
         System.out.println(fileName + " was created");
-      //  DFS.append(name, context);
+        tempReduce = context.getBReduce();
+        DFS.append2(fileName, tempReduce); //create file, write the cotents of mapReduce to it, add to metadata as normal
+        context.emptyReduce();
+
    }
+   public void append2(String filename, Map <Long, String> tempReduce) throws Exception
+    {
+        Metadata metadata = readMetaData(); //always read first when creating
+
+        // do the steps I listed in the comments
+        File fake = new File("eric/Documents/CECS327-DFS-MapReduce/fake.txt"); //fake used to just store 
+        fake.createNewFile();   
+        PrintWriter writer = new PrintWriter(fake);                                                              //the contents then GUID will be generated MD5 from it
+        for(Long key : tempReduce.keySet())
+        {
+            writer.println(key + "; " + tempReduce.get(key));
+        }                                                            //create another with that GUID name and add it to metadata
+         Page page = new Page(0, guid, 0);
+         metadata.getFile(filename).addPage(page);
+         ChordMessageInterface peer = chord.locateSuccessor(guid);
+//         peer.put(guid, new FileStream(localFile));
+        writeMetaData(metadata);
+
+
+    }
 }

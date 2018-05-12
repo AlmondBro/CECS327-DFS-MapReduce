@@ -251,6 +251,15 @@ public class Chord extends java.rmi.server.UnicastRemoteObject implements ChordM
           //e.printStackTrace();
       }
     }
+    public Map <Long, String> getBReduce()
+    {
+        System.out.println("Retrieving the reduced map");
+        return  BReduce;
+    }
+    public void emptyReduce()
+    {
+        BReduce.clear();
+    }
     //Chord Constructor
     public Chord(int port, long guid) throws RemoteException {
         int j;

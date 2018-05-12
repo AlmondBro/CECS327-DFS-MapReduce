@@ -1,6 +1,7 @@
 import java.rmi.*;
 import java.util.List;
 import java.io.*;
+import java.util.Map;
 
 public interface ChordMessageInterface extends Remote
 {
@@ -19,9 +20,11 @@ public interface ChordMessageInterface extends Remote
     public void delete(long guidObject) throws IOException, RemoteException;
 
     //sets of methods to override Map-Reduce
+   public Map <Long, String> getBReduce() throws RemoteException;
    public void setWorkingPeer(Long page) throws RemoteException;
    public void completePeer(Long page, Long n) throws RemoteException;
     public Boolean isPhaseCompleted() throws IOException;
+    public void emptyReduce() throws RemoteException;
     public void reduceContext(Long source, MapReduceInterface reducer, ChordMessageInterface context) throws RemoteException;
     public void mapContext(Long page, MapReduceInterface mapper,ChordMessageInterface context) throws RemoteException, IOException,Exception ;
     public void emitMap(Long key, String value) throws RemoteException;
